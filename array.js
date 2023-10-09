@@ -84,6 +84,6 @@ function numeroMasUno(_numero){
     _numero++;
     return _numero;
 }
-console.log(numeroMasUno(numero));
+console.log(numeroMasUno(numero)); 
 
 
