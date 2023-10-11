@@ -7,9 +7,59 @@
 </head>
 <body>
     <script>
-        var numeros = Array[1,2,3,4,5];
-        numeros.map((valor) => {return valor + 1;})
+        var numeros = Array(1,2,3,4,5);
+        //var texto = "hola";
+
+        //Aqui sumamos mas 1 a los valres del vector.
+        //numeros = numeros.map((valor) => {return valor + 1;})
+
+        //A cada array se le suma su indice
+        //numeros = numeros.map((v1,v2) => {return v1 + v2;})
+
+        //suma todos los valores del array en un total.
+        //numeros = numeros.reduce((acum,valor) => {return acum + valor;})
+
+        //d = el indice
+        //numeros = numeros.reduce((ac,val,d) => {return d;})
+
+        //acumular indices - El cumulador enmpieza en 1 no en 0
+        //numeros = numeros.reduce((ac,val,d) => {return ac + d;})
+
+        //var frase = "la manzana verde";
+        //pos = frase.lastIndexOf("manzana");
+        //posA = frase.search("verde");
+        //.log(posA);
+/*
+        var frase = "la,manzana,verde";
+        posA = frase.split(",");
+
+        for (let index = 0; index < posA.length; index++) {
+            console.log(posA[index]);
+            
+        }
+
+        console.log("                        ");
+
+        var fraseA = "la manzana verde";
+        posV = fraseA.split(" ");
+        
+        for (let index = 0; index < posV.length; index++) {
+            console.log(posA[index]);
+            
+        }
+
+        numeros.reverse();
         console.log(numeros);
+
+        numeros.join();
+        console.log(numeros);
+        */
+        //console.log(numeros);
+        //console.log(texto);
+
+
+        let mensaje = prompt("dance");
+        eval(mensaje);
     </script>
     
 </body>

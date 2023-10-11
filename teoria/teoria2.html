@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       
+
+        function palindromo($palabra){
+            var esPalindroma = false;
+            var palabraNormal = $palabra.split("");
+            var palabraRevesA = $palabra.split("").reverse().join();
+            var contador = 1;
+            
+            for (let index = 0; index < palabra.length; index++) {
+                if (palabraNormal[index] === palabraRevesA[index]) {
+                    console.log(palabraNormal[index] + " " + palabraRevesA[index]);
+                    contador++;
+                }
+            }
+            
+            console.log(palabraNormal);
+            console.log(palabraRevesA);
+            console.log(palabra.length);
+            console.log(contador);
+            if (contador === palabra.length) {
+                esPalindroma = true;
+            }
+
+            return esPalindroma;
+        }
+
+        var palabra = prompt("palabra");
+        console.log(palindromo(palabra));
+
+        //console.log(numeros);
+        //console.log(texto);
+    </script>
+    
+</body>
+</html>
