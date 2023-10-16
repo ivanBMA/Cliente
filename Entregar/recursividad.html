@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Calcular el factorial mediante recursividad.
+
+        
+        function facto(numero) {
+            if (numero === 1) {
+                return 1;
+            }else{
+                return facto(numero - 1) * numero;
+            }
+            
+        }
+
+
+        var numero = prompt("Numero");
+        console.log("-->" + facto(numero));
+       
+    </script>
+    
+</body>
+</html>

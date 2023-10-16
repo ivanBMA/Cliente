@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      let vector = ["csado","casa","prueba","zancos","ñam"];
+      vector.sort();
+      console.log(vector);
+
+      let P = [21,1,100];
+      P.sort((a,b)=>{return a - b;});
+      console.log(P);
+      //vector.sort((primera,segunda)=>primera.length- segunda.length);
+
+      let vec = [-1,2,-3,4];
+      vec.sort((a,b)=>{console.log(`comparing ${a},${b},${(a**2) - (b**2)}`); return (a**2) - (b**2);});
+      console.log(vec);
+
+    </script>
+    
+</body>
+</html>

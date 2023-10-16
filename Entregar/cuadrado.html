@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Calcular el factorial mediante recursividad.
+
+        
+        function cuadrado(numero) {
+            if (numero === 1) {
+                console.log(numero);
+                return 1;
+            }else{
+                console.log(numero);
+                return 2 * (numero - 1)+ cuadrado(numero -1) + 1;
+            }
+            
+        }
+
+        
+
+        var  numero = prompt("Numero");
+        numero  = Number(numero);
+        console.log("-->" + cuadrado(numero));
+       
+    </script>
+    
+</body>
+</html>
