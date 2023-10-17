@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       let personas = new Map() // crea el mapa.
+       let personasB = new Map()//Copia ordenada
+
+       while (personas.size != 5) {
+        var Dni = prompt("Dni: ");
+        var nombre = prompt("Nombre: ");
+
+        personas.set(Dni, nombre);
+       }
+
+
+       console.log(personas);
+       const iteratorK = personas.keys();
+       const iteratorV = personas.values();
+       var valoresA = [];
+
+       //ordena los valores
+       for (let index = 0; index < personas.size; index++) { 
+        valoresA[index] = iteratorV.next().value;
+       }
+       valoresA.sort();
+       //---------------------------------------------------------
+
+       const iteratorA = personas.keys();
+       for (let indexA = 0; indexA < personas.size; indexA++) {
+        var clabe;
+        
+            personas.forEach( (value, key, map) => {
+                if (value == valoresA[indexA]) {
+                    clabe = key;
+                }
+            });
+       personasB.set(clabe,valoresA[indexA]);
+    }
+       console.log(personasB);
+
+    </script>
+    
+</body>
+</html>

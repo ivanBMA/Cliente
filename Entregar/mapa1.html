@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       let personas = new Map() // crea el mapa.
+
+       while (personas.size != 10) {
+        var Dni = prompt("Dni: ");
+        var nombre = prompt("Nombre: ");
+
+        personas.set(Dni, nombre);
+       }
+       console.log(personas);
+
+       //Aqui recojes todas las clabes del mapa
+       const iteratorA = personas.keys();
+       for (let index = 0; index < personas.size; index++) {
+            if (index == 2) {
+                //Aqui cambias el valor del 3 elemento del mapa
+                personas.set(iteratorA.next().value,"paco");
+            }
+            //Con esto iteras las clabes de una en una
+            iteratorA.next().value;
+       }
+
+       console.log(personas);
+
+    </script>
+    
+</body>
+</html>
