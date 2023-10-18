@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*
+        1-menor a mayor
+        2- mayor a menor
+        3-
+    */
+    let v = [1,3,2,5,4];
+
+    //1
+    function menoMayor(v) {
+        const sortedValues = v.toSorted((a, b) => a - b);
+        return sortedValues;
+    }
+    
+    //2
+    function mayorMenor(v) {
+        const sortedValues = v.toSorted((b, a) => a - b);
+        return sortedValues;
+      return vCambiado;
+    }
+    console.log("Primero")
+    console.log(v);
+    console.log("menor a mayor")
+    console.log(menoMayor(v));
+    console.log("mayor a menor")
+    console.log(mayorMenor(v));
+    console.log("Ultimo")
+    console.log(v);
+
+    </script>
+    
+</body>
+</html>

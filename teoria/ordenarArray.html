@@ -7,6 +7,7 @@
 </head>
 <body>
     <script>
+    /*
       let vector = ["csado","casa","prueba","zancos","ñam"];
       vector.sort();
       console.log(vector);
@@ -19,6 +20,38 @@
       let vec = [-1,2,-3,4];
       vec.sort((a,b)=>{console.log(`comparing ${a},${b},${(a**2) - (b**2)}`); return (a**2) - (b**2);});
       console.log(vec);
+
+      let vectorA = ["Casado","casa","prueba","zancos","ñam"];
+      vectorA.sort((primera,segunda)=>primera.length-segunda.length);
+      vectorA.sort((primera,segunda)=>primera.localeCompare(segunda,"es"));
+    */
+      let vectorC =[5,7,3,1,4,9,2,6,8];
+      vectorC.sort();
+      vectorC.sort(
+        (primero,segundo)=>{
+          if (primero % 2 == 0) {
+            return -1;
+          }else{
+            return 1;
+          }
+        }
+      );
+      console.log(vectorC);
+      vectorC.sort(
+        (primero,segundo)=>{
+          if ((primero % 2 == 0) && (segundo > primero)) {
+            return - 1;
+          }else{
+            return 0;
+          }
+        }
+      );
+      console.log(vectorC);
+        /*
+        1- la razon del fallo.por que usa numeros de una cifra y compara de caracter en caracter.
+        2- ¿como lo areglarias?.
+        3- ¿Por que funciona con los inpares?
+        */
 
     </script>
     
