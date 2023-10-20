@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let vector = [12,334,111,52,98];
+        vector.forEach(function(elemento,posicion){
+            //console.log(`Posicion ${posicion}: ${elemento  + 1}`);
+            elemento = 5;
+        });
+        console.log(vector);
+
+        let conjunto = new Set();
+        conjunto.add(12).add(334).add(111).add(52).add(98);
+        conjunto.forEach(function(elemento){
+            console.log(`Elemento ${elemento}`);
+        });
+
+        let mapa = new Map();
+        mapa.set('a',12).set('b',334).set('c',111).set('d',52).set('e',98);
+        mapa.forEach(function(valor,clave){
+            console.log(`clave:  ${clave}/ valor:  ${valor}`);
+        });
+        
+        //mostrar los clientes con los numeros en rojo
+        let clienteBanco = new Map();
+        let clienteBancoNegativo = new Map();
+        mapa.set('ivan',1200).set('baca',-334).set('carlos',-111).set('david',52).set('ester',9800);
+        mapa.forEach(function(valor,clave){
+            if (valor < 0) {
+                console.log(`clave:  ${clave}/ valor:  ${valor}`);
+                clienteBancoNegativo.set(clave,valor);
+            }
+        });
+        console.log("El mapa negativo");
+
+        clienteBancoNegativo.forEach(function(valor,clave){
+            console.log(`clave:  ${clave}/ valor:  ${valor}`);
+        });
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        1- Hacer funcion que determine si un numero es primo.
+        2- Dado un array de numeros concretos (llamado V) extraer de el todos los primos.
+        3- Hacer que salgan ordenados y mostrar primero el array que solo tiene los primos 
+            en cosola y desoues el otro.
+    -->
+    <script>
+        // 1- Hacer funcion que determine si un numero es primo.
+        function esPrimo(params) {
+            resultado = true;
+            if (params == 1) {
+                resultado =  false;
+            }else{
+                for (var i = 2; i < params; i++) {
+                    if (params % i === 0) {
+                        return resultado =  false;
+                    }
+                }
+            }
+           
+
+            return resultado;
+        }
+
+        function mostrarVector(vectorEnseñar) {
+            for (let index = 0; index < vectorEnseñar.length; index++) {
+                if (esPrimo(vectorEnseñar[index])) {
+                    console.log("El numero " + vectorEnseñar[index] + " es primo");
+    
+                }else{
+                    console.log("El numero " + vectorEnseñar[index] + " no es primo");
+
+                }
+            }
+        }
+
+        function mostrarVectorSinDecirNada(vectorEnseñar) {
+            for (let index = 0; index < vectorEnseñar.length; index++) {
+                    console.log(vectorEnseñar[index]);    
+            }
+        }
+
+        var numero = prompt("Numero: ");
+        if (esPrimo(numero)) {
+            console.log("El numero " + numero + " es primo");
+        }else{
+            console.log("El numero " + numero + " no es primo");
+
+        }
+        //----------------------------------------------------------------
+        // 2- Dado un array de numeros concretos (llamado V) extraer de el todos los primos.
+        var v = [3,9,5,7,6,2,1,4];
+        mostrarVector(v);
+
+        //-----------------------------------------------------------------------------------
+        //3- Hacer que salgan ordenados y mostrar primero el array que solo tiene los primos 
+        //en cosola y desoues el otro.
+        const sorted = v.toSorted();
+        const sortedValuesPrimos = [];
+        const sortedValuesNoPrimos = [];
+        
+        for (let index = 0; index < sorted.length; index++) {
+            if (esPrimo(sorted[index])) {
+                //sortedValuesPrimos =  sorted.push(sorted[index]);
+                sortedValuesPrimos.push(sorted[index]);
+
+            }else{
+                //sortedValuesNoPrimos =  sorted.push(sorted[index]);
+                sortedValuesNoPrimos.push(sorted[index]);
+
+            }
+        }
+        
+        
+        const todos  = sortedValuesPrimos.concat(sortedValuesNoPrimos);
+        //todos.push();
+
+        console.log("todos ordenados de mayor a menor y de primo a no primo")
+        mostrarVectorSinDecirNada(todos);
+
+        /*
+        let filtradas = v.filter(elemento => esPrimo(elemento));
+        mostrarVectorSinDecirNada(filtradas);
+        */
+        //-----------------------------------------------------------------------------------
+
+    </script>
+    
+</body>
+</html>
