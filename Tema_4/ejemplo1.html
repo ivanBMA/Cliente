@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let numero = [1,2,3,4];
+        /*
+        console.log(numero.length);
+        console.log("Mensaje");
+        console["log"]("Mensaje");
+        
+        console.log(vector instanceof Array);
+        let conjunto = new Set();
+        console.log(conjunto instanceof Map);
+        */
+        let notas = new Object();
+        notas.valores = [7,5,3,2,3,9,6];
+        notas.cantidad = notas.valores.length;
+        notas.media = notas.valores.reduce((a,b)=>a+b,0)/notas.cantidad;
+        notas.verMedia = function(){
+            console.log(notas.media);
+        }
+        notas.verMedia();
+        console.log(notas);
+
+        let viaje={
+            origen:"Granada",
+            destino:"El cariro",
+            dias:8,
+            precio:750,
+            mostrar:function(){
+                console.log(`${this.origen}/ ${this.destino}`);
+                console.log(`durante ${this.dias} dias: EUR${this.precio}`);
+                console.log(this);
+            }
+        };
+        viaje.mostrar();
+        console.log(this);
+        let oferta = viaje;
+        viaje = null;
+        oferta.mostrar();
+        console.log(viaje);
+    </script>
+    
+</body>
+</html>

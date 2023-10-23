@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const padre = {
+            saludar: function(){
+                console.log("Hola soy yo");
+            }
+        }
+
+        const hijo = Object.create(padre);
+        console.log("Antes de la modificacion: ");
+        hijo.saludar();
+        padre.saludar = function(){
+            console.log("ya no soy yo");
+        }
+        hijo.saludar();
+    </script>
+    
+</body>
+</html>

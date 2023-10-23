@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Viaje{
+            origen = "Granada";
+            destino = "El cairo";
+            dias = 8;
+            precio = 750;
+            constructor(or,des,di,pre){
+                this.origen = or;
+                this.destino = des;
+                this.dias = di;
+                this.precio = pre;
+            }
+            mostrar(){
+                console.log(`${this.origen} / ${this.destino}`);
+                console.log(`${this.dias} dias: EUR ${this.precio}`);
+            }
+        }
+        let miViaje = new Viaje("Barcelona","Ibiza",2,112);
+        miViaje.mostrar();
+    </script>
+    
+</body>
+</html>
