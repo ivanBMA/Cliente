@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const paco = {
+            _edad:50
+        }
+        const comportamiento = {
+            has: function(target,key){
+                return !(key.startsWith('_') && key in target)
+            },
+            get: function(target,key,receiver){
+                return key in receiver ? target[key]: undefined
+            }
+        }
+        const pacoproxy = new Proxy(paco,comportamiento);
+        console.log(pacoproxy._edad);
+
+    </script>
+    
+</body>
+</html>

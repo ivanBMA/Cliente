@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Cuenta{
+            nombre = "Paco";
+            codCuenta = "27";
+            dni = "541278O";
+            constructor(nom,cod,dni){
+                this.nombre = nom;
+                this.codCuenta = cod;
+                this.dni = dni;
+            }
+            mostrar(){
+                console.log(`Nombre ${this.nombre} |codCuenta: ${this.codCuenta} |dni:  ${this.dni}`);
+            }
+            nombreSet(nombreNuevo){
+                this.nombre = nombreNuevo;
+            }
+        }
+
+
+        const cuenta = new Cuenta("Juan","27","541278O");
+        cuenta.mostrar();
+        cuenta.nombreSet("paco");
+        cuenta.mostrar();
+
+        const handler = {
+            set: 'Solo Lectura',
+            defineProperty: 'Solo Lectura',
+            deleteProperty: 'Solo Lectura',
+            preventExtensions: 'Solo Lectura',
+            setPrototypeOf: 'Solo Lectura',
+        }
+        //const handler2 = {};
+        //const proxy2 = new Proxy(datosInalterables,handler2);
+        const proxy = new Cuenta("paco","j","f",handler);
+        proxy.mostrar();
+        proxy.nombreSet("saco");
+        proxy.mostrar();
+
+    </script>
+    
+</body>
+</html>

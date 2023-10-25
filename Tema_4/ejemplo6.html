@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const productDescs = {nombre: "Doritos"}
+        const handler = {
+            set: function(target,key, value){
+                if (value.length > 9) {
+                    value = value.suvstring(0,9);
+                }
+                if (name(value) == true) {
+                    target[key] = value;
+                    console.log("Bien");
+                }else{
+                    console.warn("Terrible eleccion para un DNI");
+                }
+            }
+        }
+        const proxy = new Proxy(productDescs,handler);
+        proxy.nombre = "56981254O";
+
+        //https://elcodigoascii.com.ar/
+        function name(dniComprobar) {
+            var resultado = false;
+            var number;
+            var contador = 0;
+
+            for (let index = 0; index < dniComprobar.length; index++) {
+                if (dniComprobar[index] >= 0 && dniComprobar[index] <= 9) {
+                    contador++;
+                    
+                }else{
+                }
+                
+            }
+
+            if (dniComprobar.length == 9) {
+                if (contador == 8) {
+                    if (dniComprobar.charCodeAt(8) >= 64 && dniComprobar.charCodeAt(8) <= 91) {
+                        resultado = true;
+                    }else{
+                        alert("Mal la letra " + dniComprobar.substring(8) + " tiene que ser en mayusculas");
+                    }
+                }else{
+                    alert("Mal los numeros por que tiene " + contador + " numeros y son 8");
+                }
+            }else{
+                alert("Mal la longitud " + dniComprobar.length + " " + dniComprobar);
+            }
+
+            return resultado;
+        }
+
+
+        
+
+    </script>
+    
+</body>
+</html>
