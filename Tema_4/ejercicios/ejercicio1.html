@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        1)Definir un ofjeto llamado cocina en el que tenga sentido tener un metodo llamado 
+        hacer tortilla de patata que muestre por consola como se va usado la cocina para 
+        cocinar la tortilla.(objeto para cada objeto o accion de desempeñar una tortilla)
+        2)Añadir opcion sin cebolla.
+        3)Por que definis las cosas de la manera que lo haceis.
+        */
+        class Cocina{
+            ingredientes = new Ingredientes();
+            utensilios = new Utensilios();
+            estadoObjetos = new EstadoObjetos();
+
+
+            constructor(ing,ute,esta){
+                this.ingredientesA = ing;
+                this.utensiliosA = ute;
+                this.estadoObjetosA = esta;
+            }
+            mostrar(){
+                console.log(`[ ${this.ingredientesA.mostrar()} 
+                |${this.utensiliosA.mostrar()} 
+                |${this.estadoObjetosA.mostrar()} ]`);
+            }
+
+            comoVaLaTortilla(){
+                if (ingredientes.huevosGet() >= 4 && ingredientes.patatasGet() >= 3
+                    && ingredientes.cebollasGet(9) >= 1) {
+                    console.log("Tienes suficientes ingredientes");
+                    if (utensilios.bollGet() == true && utensilios.sartenGet() == true
+                    && utensilios.tenedorGet() == true) {
+                        console.log("tienes suficientes utensilios")
+
+                        if (estadoObjetos.huevosBatidosGet() == true && estadoObjetos.patatasCortadasGet() == true
+                        && estadoObjetos.sartenCalienteGet() == true) {
+                            console.log("Tienes suficientes estados")
+                            console.log("Todo esta en orden tienes una tortilla")
+                            
+                        }else{
+                            console.log("No tienes suficientes estados")
+                        }
+                    }else{
+                    console.log("No tienes suficientes utensilios")
+
+                    }
+                }else{
+                    console.log("No tienes suficientes ingredientes")
+                    console.log("deberias tener huevos = 4 patatas =  3 cebollas = 1")
+                    console.log(ingredientes.huevosGet())
+                }
+            }
+            
+        }
+
+        class Ingredientes{
+            huevos = 5;
+            cebollas = 6;
+            patatas = 10;
+
+            constructor(hue,ce,pa){
+                this.huevos = hue;
+                this.cebollas = ce;
+                this.patatas = pa;
+            }
+
+            mostrar(){
+                console.log(`Ingredientes huevos ${this.huevos} |cebollas: ${this.cebollas} |patatas:  ${this.patatas}`);
+            }
+
+
+            patatasGet(){
+                return this.patatas;
+            }
+            cebollasGet(){
+                return this.cebollas;
+            }
+            huevosGet(){
+                return this.huevos;
+            }
+
+
+            cojerPatatasSet(patatasRestar){
+                if (this.patatas = patatas - patatasRestar >= 0) {
+                    this.patatas = patatas - patatasRestar;
+                }else{
+                    console.log("No hay tantas patatas");
+                }
+            }
+
+            cojerCebollasSet(cebollasRestar){
+                if (this.cebollas = cebollas - cebollasRestar >= 0) {
+                    this.cebollas = cebollas - cebollasRestar;
+                }else{
+                    console.log("No hay tantas cebollas");
+                }
+            }
+
+            cojerhuevosSet(huevosRestar){
+                if (this.huevos = huevos - huevosRestar >= 0) {
+                    this.huevos = huevos - huevosRestar;
+                }else{
+                    console.log("No hay tantas huevos");
+                }
+            }
+
+        }
+
+        class Utensilios{
+            boll = true;
+            sarten = true;
+            tenedor = true;
+
+            constructor(bo,sa,te){
+                this.boll = bo;
+                this.sarten = sa;
+                this.tenedor = te;
+            }
+
+            mostrar(){
+                console.log(`Utensilios boll ${this.boll} |sarten: ${this.sarten} |tenedor:  ${this.tenedor}`);
+            }
+
+            bollGet(){
+                return this.boll;
+            }
+            sartenGet(){
+                return this.sarten;
+            }
+            tenedorGet(){
+                return this.tenedor;
+            }
+        }
+
+        class EstadoObjetos{
+            sartenCaliente = true;
+            huevosBatidos = true;
+            patatasCortadas = true;
+
+            constructor(sar,hu,pa){
+                this.sartenCaliente = sar;
+                this.huevosBatidos = hu;
+                this.patatasCortadas = pa;
+            }
+
+            mostrar(){
+                console.log(`EstadoObjetos sartenCaliente ${this.sartenCaliente} |huevosBatidos: ${this.huevosBatidos} |patatasCortadas:  ${this.patatasCortadas}`);
+            }
+
+            sartenCalienteGet(){
+                return this.sartenCaliente;
+            }
+            huevosBatidosGet(){
+                return this.huevosBatidos;
+            }
+            patatasCortadasGet(){
+                return this.patatasCortadas;
+            }
+        }
+
+
+        const ingredientes = new Ingredientes(5,6,7);
+        const utensilios = new Utensilios(true,true,true);
+        const estadoObjetos = new EstadoObjetos(true,true,true);
+
+        const cocina = new Cocina(ingredientes,utensilios,estadoObjetos);
+
+        cocina.mostrar();
+        cocina.comoVaLaTortilla();
+        //cuenta.nombreSet("paco");
+
+        
+
+    </script>
+    
+</body>
+</html>

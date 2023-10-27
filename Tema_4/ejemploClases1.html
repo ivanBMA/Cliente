@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Viaje{
+            origen = "Granada";
+            destino = "El cairo";
+            dias = 8;
+            precio = 750;
+            constructor(or,des,di,pre){
+                this.origen = or;
+                this.destino = des;
+                this.dias = di;
+                this.precio = pre;
+            }
+            mostrar(){
+                console.log(`${this.origen} / ${this.destino}`);
+                console.log(`${this.dias} dias: EUR ${this.precio}`);
+            }
+        }
+
+        
+        let miViaje = new Viaje("Barcelona","Ibiza",2,112);
+        for(elemento in miViaje){
+            console.log(elemento);
+        }
+
+        for(elementoa of Object.getOwnPropertyNames(miViaje)){
+            console.log(elementoa);
+        }
+
+        let vetor = [1,2,4,5,6];
+        vetor.meh = "zoo";
+        for(var i in vetor){
+            console.log(i);
+        }
+        console.log("__________");
+
+        for(var i of vetor){
+            console.log(i);
+        }
+        console.log("__________");
+
+        for(var i in vetor){
+            console.log(vetor[i]);
+        }
+
+    </script>
+    
+</body>
+</html>
