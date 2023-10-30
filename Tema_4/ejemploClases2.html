@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Perro{
+            //El "#" Quiere decir que es privado.
+            //si singuelton
+            #nombre = "Granada";
+            constructor(or){
+                this.#nombre = or;
+
+                if (typeof Perro.instance === "Object") {
+                    return Perro.instance;
+                }
+                Perro.instance = this;
+                return this;
+            }
+            mostrar(){
+                console.log(`${this.nombre}`);
+
+            }
+            #ladrar(){
+                console.log(`${this.nombre} esta ladrando`);
+
+            }
+            llamarLadrido(){
+                this.#ladrar();
+            }
+        }
+
+        class Chiguagua extends Perro{
+            raza = "Granada";
+            constructor(or,nombre){
+                super(nombre);
+                this.raza = or;
+                
+            }
+            //static llamarLadrido();No funciona por que es privado
+
+
+            mostrar(){
+                console.log(`raza ${this.raza} nombre ${this.nombre}`);
+
+            }
+        }
+
+        
+        let miViaje = new Chiguagua("blanco","fils");
+        let miViaje1 = new Chiguagua("blancoa","filsa");
+        console.log(miViaje);
+        console.log(miViaje1);
+
+        //miViaje.llamarLadrido();
+
+    </script>
+    
+</body>
+</html>
