@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td{
+            border: solid black 2px;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        Sudocu
+    -->
+    <table class="default">
+    <script>
+
+        function numeroAleatorio() {
+            numero = Math.random() * (9 - 0) + 0;
+            let numeroSinDecimales = Math.trunc(numero);
+            return numeroSinDecimales;
+        }
+
+        var matrix = [[]];
+    for (var i = 0; i < 3; i++) {
+        document.write("<tr>");
+        for (let j = 0; j < 3; j++) {
+
+            matrix[[i, j]] = numeroAleatorio();
+            //console.log(matrix[[i, j]] + " ") ;
+            document.write("<td>" + matrix[[i, j]] + "</td>");
+        }
+        document.write("</tr>");
+    }
+
+
+    //console.log(matrix) 
+    //console.log(numeroAleatorio());
+
+
+    </script>
+    </table>
+</body>
+</html>

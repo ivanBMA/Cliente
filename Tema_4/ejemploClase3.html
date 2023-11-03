@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        Sudocu
+    -->
+    <script>
+        let erObjeto = new RegExp(`[0-9]`);
+        console.log(erObjeto.test("a"));
+        console.log(erObjeto.test("almamia"));
+        console.log(erObjeto.test("alma66Mia"));
+        console.log(erObjeto.test("987"));
+        console.log("--------------");
+
+        let hayA = /a/;
+        console.log(hayA.test("a"));
+        console.log(hayA.test("b"));
+        console.log("--------------");
+
+        let hayB = /miA/;
+        console.log(hayB.test("a"));
+        console.log(hayB.test("miA"));
+        console.log("--------------");
+        
+        let hayC = /[mM]ia/;
+        console.log(hayC.test("a"));
+        console.log(hayC.test("mMia"));
+        console.log(hayC.test("Mia"));
+        console.log("--------------");
+
+        let hayD = "foo3jeje8scr";
+        console.log(hayD.replace("3","-"));
+
+        let filtro = /\d.*\d/;
+        console.log(hayD.replace(filtro));
+
+        let dosCaneas = hayD + hayD;
+        console.log(dosCaneas.replace(filtro));
+
+    </script>
+    
+</body>
+</html>
