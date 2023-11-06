@@ -37,18 +37,21 @@
                     console.log("Tienes suficientes ingredientes");
                     if (utensilios.bollGet() == true && utensilios.sartenGet() == true
                     && utensilios.tenedorGet() == true) {
-                        console.log("tienes suficientes utensilios")
+                        console.log("tienes suficientes utensilios");
 
                         if (estadoObjetos.huevosBatidosGet() == true && estadoObjetos.patatasCortadasGet() == true
                         && estadoObjetos.sartenCalienteGet() == true) {
-                            console.log("Tienes suficientes estados")
-                            console.log("Todo esta en orden tienes una tortilla")
+                            console.log("Tienes suficientes estados");
+                            console.log("Todo esta en orden tienes una tortilla");
+                            ingredientes.cojerPatatasSet(3);
+                            ingredientes.cojerhuevosSet(4);
+                            ingredientes.cojerCebollasSet(1);
                             
                         }else{
-                            console.log("No tienes suficientes estados")
+                            console.log("No tienes suficientes estados");
                         }
                     }else{
-                    console.log("No tienes suficientes utensilios")
+                    console.log("No tienes suficientes utensilios");
 
                     }
                 }else{
@@ -88,24 +91,29 @@
 
 
             cojerPatatasSet(patatasRestar){
-                if (this.patatas = patatas - patatasRestar >= 0) {
-                    this.patatas = patatas - patatasRestar;
+                var patatasARestar = this.patatas;
+                if (this.patatas = patatasARestar - patatasRestar >= 0) {
+                    this.patatas = patatasARestar - patatasRestar;
                 }else{
                     console.log("No hay tantas patatas");
                 }
             }
 
             cojerCebollasSet(cebollasRestar){
-                if (this.cebollas = cebollas - cebollasRestar >= 0) {
-                    this.cebollas = cebollas - cebollasRestar;
+                var cebollasARestar = this.cebollas;
+                
+                if (this.cebollas = cebollasARestar - cebollasRestar >= 0) {
+                    this.cebollas = cebollasARestar - cebollasRestar;
                 }else{
                     console.log("No hay tantas cebollas");
                 }
             }
 
             cojerhuevosSet(huevosRestar){
-                if (this.huevos = huevos - huevosRestar >= 0) {
-                    this.huevos = huevos - huevosRestar;
+                var huevosARestar = this.huevos;
+                
+                if (this.huevos = huevosARestar - huevosRestar >= 0) {
+                    this.huevos = huevosARestar - huevosRestar;
                 }else{
                     console.log("No hay tantas huevos");
                 }
@@ -173,6 +181,10 @@
         const cocina = new Cocina(ingredientes,utensilios,estadoObjetos);
 
         cocina.mostrar();
+        cocina.comoVaLaTortilla();
+        console.log("-----------------------------------------------------------------")
+        cocina.mostrar();
+        console.log("-----------------------------------------------------------------")
         cocina.comoVaLaTortilla();
         //cuenta.nombreSet("paco");
 
