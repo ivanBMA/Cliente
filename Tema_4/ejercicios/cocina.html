@@ -15,6 +15,8 @@
         3)Por que definis las cosas de la manera que lo haceis.
         */
         class Cocina{
+            //Defino un objeto para cada parte necesaria de hacer una tortilla
+            //y los agrupo por sus utilidades.
             ingredientes = new Ingredientes();
             utensilios = new Utensilios();
             estadoObjetos = new EstadoObjetos();
@@ -25,6 +27,9 @@
                 this.utensiliosA = ute;
                 this.estadoObjetosA = esta;
             }
+            //Aqui muestro la informacion de como esta la cocina para saber que hay
+            //y como esta, uso el toString() de cada objeto y los unifico dentro de
+            //este.
             mostrar(){
                 console.log(`[ ${this.ingredientesA.mostrar()} 
                 |${this.utensiliosA.mostrar()} 
@@ -32,13 +37,17 @@
             }
 
             comoVaLaTortilla(){
+                //Si tienes los ingredientes sigues si no te muestra los que necesitas para hacer una tortilla.
                 if (ingredientes.huevosGet() >= 4 && ingredientes.patatasGet() >= 3
                     && ingredientes.cebollasGet(9) >= 1) {
                     console.log("Tienes suficientes ingredientes");
+                    //Si tienes todos los utensilios sigue el trancurso norma si no muestra
+                    //lo que falta y sale.
                     if (utensilios.bollGet() == true && utensilios.sartenGet() == true
                     && utensilios.tenedorGet() == true) {
                         console.log("tienes suficientes utensilios");
-
+                        //En este ultimo resta los ingredientes utilizados al objeto ingredientes.
+                        //Muestra por pantalla un mensaje de exito de creacion de tortilla.
                         if (estadoObjetos.huevosBatidosGet() == true && estadoObjetos.patatasCortadasGet() == true
                         && estadoObjetos.sartenCalienteGet() == true) {
                             console.log("Tienes suficientes estados");
@@ -78,7 +87,7 @@
                 console.log(`Ingredientes huevos ${this.huevos} |cebollas: ${this.cebollas} |patatas:  ${this.patatas}`);
             }
 
-
+            //Geters para sacar la informacion de cada parte del objeto
             patatasGet(){
                 return this.patatas;
             }
@@ -89,7 +98,7 @@
                 return this.huevos;
             }
 
-
+            //seter para cambiar valores del objeto
             cojerPatatasSet(patatasRestar){
                 var patatasARestar = this.patatas;
                 if (this.patatas = patatasARestar - patatasRestar >= 0) {
@@ -177,18 +186,17 @@
         const ingredientes = new Ingredientes(5,6,7);
         const utensilios = new Utensilios(true,true,true);
         const estadoObjetos = new EstadoObjetos(true,true,true);
-
+        //Declaro cocina cons sus respectivos objetos necesarios.
         const cocina = new Cocina(ingredientes,utensilios,estadoObjetos);
-
+        //Muestro el estado de la cocina  
         cocina.mostrar();
+        //Muestro la funcion de creacion de tortillas por pantalla.
         cocina.comoVaLaTortilla();
         console.log("-----------------------------------------------------------------")
         cocina.mostrar();
         console.log("-----------------------------------------------------------------")
         cocina.comoVaLaTortilla();
-        //cuenta.nombreSet("paco");
-
-        
+    
 
     </script>
     
