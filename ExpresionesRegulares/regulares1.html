@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        Sudocu
+    -->
+    <script>
+
+        let hayA = /abc/;
+        console.log(hayA.test("abcdefg"));
+        console.log(hayA.test("abcde"));
+        console.log(hayA.test("abc"));
+        console.log("--------------");
+
+        let hayB = /123/;
+        var g = 123;
+        console.log(hayB.test("abc123xyz"));
+        console.log(hayB.test("123"));
+        console.log(hayB.test(g));
+        console.log("--------------");
+
+        let hayC = /\.$/;
+        console.log(hayC.test("cat."));
+        console.log(hayC.test("896."));
+        console.log(hayC.test("?=+."));
+        console.log(hayC.test("abc1"));
+        console.log("--------------");
+
+        let hayD = /^[^d\\^r\\^p]/;
+        console.log(hayD.test("can"));
+        console.log(hayD.test("man"));
+        console.log(hayD.test("fan"));
+        console.log(hayD.test("dan"));
+        console.log(hayD.test("ran"));
+        console.log(hayD.test("pan"));
+        console.log("-------------- ultimo");
+
+        let hayE = /^[c-z]/;
+        console.log(hayE.test("hog"));
+        console.log(hayE.test("dog"));
+        console.log(hayE.test("bog"));
+        console.log("--------------");
+
+        let hayF = /^[^a-z]/;
+        console.log(hayF.test("Ana"));
+        console.log(hayF.test("Bob"));
+        console.log(hayF.test("Cpc"));
+        console.log(hayF.test("aax"));
+        console.log(hayF.test("bby"));
+        console.log(hayF.test("ccz"));
+        console.log("--------------");
+
+        let hayG = /zzz/;
+        console.log(hayG.test("wazzzzzup"));
+        console.log(hayG.test("wazzzup"));
+        console.log(hayG.test("wazup"));
+        console.log("-------------- ultimo");
+
+        let hayH = /aa/;
+        console.log(hayH.test("aaaabcc"));
+        console.log(hayH.test("aabbbbc"));
+        console.log(hayH.test("aacc"));
+        console.log(hayH.test("a"));
+        console.log("-------------- aa");
+
+        let hayI = /\?$/;
+        console.log(hayI.test("1 file found?"));
+        console.log(hayI.test("2 file found?"));
+        console.log(hayI.test("24 file found?"));
+        console.log(hayI.test("not file found."));
+        console.log("-------------- ?");
+
+        let hayJ = /^[ ]/;
+        console.log(hayJ.test(" abc"));
+        console.log(hayJ.test("  abc"));
+        console.log(hayJ.test("   abc"));
+        console.log(hayJ.test("abc"));
+        console.log("-------------- espacio");
+
+        let hayK = /^[M]/;
+        console.log(hayK.test("Mission: successful"));
+        console.log(hayK.test("Last mission: unsuccessfull"));
+        console.log(hayK.test("Next Mission: successful upon capture of target"));
+        console.log("-------------- M");
+
+        let hayL = /.pdf$/;
+        console.log(hayL.test("file_record_transcript.pdf"));
+        console.log(hayL.test("file_072419999.pdf"));
+        console.log(hayL.test("testfile_fake.pdf.tmp"));
+        console.log("-------------- pdfAcaba");
+
+        function dniComprobar(params) {
+            let comprobar = /^\d[1-9]{7}[A-Z]$/;
+            if (comprobar.test(params)) {
+                console.log("Dni Correcto");
+            }else{
+                console.log("Dni Incorrecto");
+
+            }
+        }
+
+        var dni = prompt("dni a comprobar");
+        dniComprobar(dni);
+
+
+        function archivoComprobar(params) {
+            let comprobarA = /.pdf$/;
+            if (comprobarA.test(params)) {
+                console.log("archivo correcto");
+                var archivo2 = prompt("pon un dia en que empiece en mayusculas");
+                
+                let comprobar2 = /^[A-M]/;
+                if (comprobar2.test(archivo2)) {
+                    console.log("todo Correcto");
+                }else{
+                    console.log("incorrecto");
+                }
+            }else{
+                console.log("archivo Incorrecto");
+
+            }
+        }
+
+        var archivo = prompt("pasa un archivo");
+        archivoComprobar(archivo);
+
+
+    </script>
+    
+</body>
+</html>
