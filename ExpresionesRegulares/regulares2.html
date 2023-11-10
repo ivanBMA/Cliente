@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        Sudocu
+    -->
+    <script>
+
+        
+
+        //Comprobar si tiene numeros de 3 manera diferentes
+        let hay1 = /[0-9]/;
+        let hay2 = /\d/;
+        let hay3 = /[0\1\\2\\3\\4\\5\\6\\7\\8\\9]/;
+
+
+        console.log(hay1.test("hola"));
+        console.log(hay1.test("hol4"));
+        console.log("-------------- 1");
+        console.log(hay2.test("hola"));
+        console.log(hay2.test("hol4"));
+        console.log("-------------- 1.A");
+        console.log(hay3.test("hola"));
+        console.log(hay3.test("hol4"));
+        console.log(hay3.test("h1l4"));
+        console.log("-------------- 1.B");
+
+        //2 Hacer una comprobación de si la cadena tiene algún caracter que no sea a, l, A, L, s, S
+        let hay21 = /[^a\\^l\\^A\\^L\\^s\\^S]/;
+        console.log(hay21.test("morti"));
+        console.log(hay21.test("antartida"));
+        console.log(hay21.test("Ak"));
+        console.log(hay21.test("Aa"));
+        console.log("-------------- 2");
+
+        //3 Cuál sería la expresión a usar para una cadena que no empieze por B?
+        let hay31 = /^[^B]/;
+        console.log(hay31.test("Bb"));
+        console.log(hay31.test("a"));
+        console.log("-------------- 3");
+
+        //4 Cuál sería la expresión a usar para una cadena que no empieze por número?
+        let hay41 = /^[^0-9]/;
+        console.log(hay41.test("1b"));
+        console.log(hay41.test("a"));
+        console.log("-------------- 4");
+
+        //5 Cuál sería la expresión a usar para una cadena que empieze por letra minúscula
+        let hay51 = /^[^a-z]/;
+        console.log(hay51.test("Ab"));
+        console.log(hay51.test("a"));
+        console.log("-------------- 5");
+
+        //6 Cuál sería la expresión a usar para una cadena que empieze por letra Mayúscula y 
+        //  acabe por r
+        let hay61 = /^[A-Z].[r]$/;
+        console.log(hay61.test("Abr"));
+        console.log(hay61.test("abr"));
+        console.log(hay61.test("Ab3"));
+        console.log(hay61.test("ab3"));
+        console.log("-------------- 6");
+        
+        //7 Tenemos la expresión /\bye/ aplicado sobre la cadena= "bye", Devolvería verdadero 
+        //o falso? Por qué?
+        let hay71 = /\bye/;
+        console.log(hay71.test("bye"));
+        console.log("-------------- 7");
+        //Debuelve false por que la contrabarra es para escapar y usar el caracter 
+        //y no la funcion del caracter
+
+
+        //8 Tengo tres palabras en tres variables distintas, 'genio', 'girasol', 'geranio'. 
+        //Teniendo en cuenta que vamos a crear una regla desde la primera letra de las tres 
+        //palabras'g', qué regla debería usar para la expresión nos encontrara la palabra 
+        //'girasol'
+        let hay81 = /^[g]irasol$/;
+        console.log(hay81.test("genio"));
+        console.log(hay81.test("girasol"));
+        console.log(hay81.test("geranio"));
+        console.log("-------------- 8");
+
+        /*
+        9 Tenemos tres palabras, "a s", "acadenas", "as"
+            pasar dichas palabras por las expresiones siguientes:
+            /as/
+            /a*s/
+            /a+s/
+        */
+        let hay91 = /as/;
+        console.log(hay91.test("a s"));
+        console.log(hay91.test("acadenas"));
+        console.log(hay91.test("as"));
+        console.log("-------------- 91");
+        let hay92 = /a*s/;
+        console.log(hay92.test("a s"));
+        console.log(hay92.test("acadenas"));
+        console.log(hay92.test("as"));
+        console.log("-------------- 92");
+        let hay93 = /a+s/;
+        console.log(hay93.test("a s"));
+        console.log(hay93.test("acadenas"));
+        console.log(hay93.test("as"));
+        console.log("-------------- 93");
+        //10 ¿Qué resultados obtenemos?¿Por qué?
+        // /as/ -> todos los que tengan 'as' junto dara true
+        // /a*s/ -> todo true  por pueden aparecer 0 o mas veces la cadena "as"
+        // /a+s/ -> todo true menos el primero por que deben aparecer 1 o mas veces la cadena "as"
+
+        //11 Tenemos la palabra 'moon', aplicar una regla de validación que nos de positivo teniendo en 
+        //cuenta que tenemos dos letras o seguidas
+        let hay111 = /oo/;
+        console.log(hay111.test("moon"));
+        console.log(hay111.test("boon"));
+        console.log(hay111.test("mon"));
+        console.log("-------------- hay111");
+        /*
+        12  Tenemos la siguiente expresión, escribir qué es lo que está buscando, escribir a demás una 
+            palabra que cumpla esos requisitos.
+            /^[A-Z]+$/;
+        */
+        let hay121 = /^[A-Z]+$/;
+        console.log(hay121.test("BB"));
+        console.log(hay121.test("B"));
+        //Las 2 cadenas cumplen los requisitos
+        console.log("-------------- hay121");
+
+        /*
+        13  Quiero tener una comprobación para que una cadena, empiece por letra minúscula, a 
+            demás deberá contener 1 o varios caracteres numéricos y debéra contener al menos un 
+            caracter en mayúscula al final de la cadena
+        */
+        let hay131 = /^[a-z][0-9]+[A-Z]$/;
+        console.log(hay131.test("a34534Z"));
+        console.log(hay131.test("aZ"));
+        console.log(hay131.test("A1234z"));
+        console.log("-------------- hay131");
+
+        /*
+        14  Usar la siguiente expresión aplicando el banderín 'global' y revisar el contenido que 
+            devuelve la expresión al pasarlo por la función match
+            /([a-z]*)/g
+        */
+
+        /*
+        Crea un array vacío que llamaremos tabú, a través del promp debe pedir al usuario que 
+        introduzca palabras que consideré tabú y almacenarlas en el array. El programa dejará de pedir 
+        palabras cuando el usuario escriba Ninguna ó ninguna. Después, pedirá un texto por el prompt 
+        y lo escribirá por pantalla sustituyendo las palabra tabú por el texto: ¡#$@*!
+        */
+        //let hay61 = /^[A-Z].[r]$/;
+        let expresion14 = /Ninguna/;
+        let expresion14A = /ninguna/;
+
+        console.log(expresion14.test("Ninguna"));
+        console.log(expresion14A.test("ninguna"));
+        console.log(expresion14.test("ningun"));
+        console.log("-------------- ningun");
+
+
+        var palabra ="";
+        palabra = prompt("palabra: fuera");
+        var contador = 0;
+        let vectorPalabras = [];
+
+        while (expresion14.test(palabra) != true ) {
+            palabra = prompt("palabra: Ninguna");
+            vectorPalabras[contador];
+            contador++;
+        }
+
+        for (let index = 0; index < vectorPalabras.length; index++) {
+            console.log(" a " + vectorPalabras[index]);
+        }
+
+
+    </script>
+    
+</body>
+</html>
