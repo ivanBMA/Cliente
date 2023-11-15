@@ -140,42 +140,11 @@
         console.log(hay131.test("A1234z"));
         console.log("-------------- hay131");
 
-        /*
+         /*
         14  Usar la siguiente expresión aplicando el banderín 'global' y revisar el contenido que 
             devuelve la expresión al pasarlo por la función match
             /([a-z]*)/g
         */
-
-        /*
-        Crea un array vacío que llamaremos tabú, a través del promp debe pedir al usuario que 
-        introduzca palabras que consideré tabú y almacenarlas en el array. El programa dejará de pedir 
-        palabras cuando el usuario escriba Ninguna ó ninguna. Después, pedirá un texto por el prompt 
-        y lo escribirá por pantalla sustituyendo las palabra tabú por el texto: ¡#$@*!
-        */
-        //let hay61 = /^[A-Z].[r]$/;
-        let expresion14 = /Ninguna/;
-        let expresion14A = /ninguna/;
-
-        console.log(expresion14.test("Ninguna"));
-        console.log(expresion14A.test("ninguna"));
-        console.log(expresion14.test("ningun"));
-        console.log("-------------- ningun");
-
-
-        var palabra ="";
-        palabra = prompt("palabra: fuera");
-        var contador = 0;
-        let vectorPalabras = [];
-
-        while (expresion14.test(palabra) != true ) {
-            palabra = prompt("palabra: Ninguna");
-            vectorPalabras[contador];
-            contador++;
-        }
-
-        for (let index = 0; index < vectorPalabras.length; index++) {
-            console.log(" a " + vectorPalabras[index]);
-        }
 
 
     </script>

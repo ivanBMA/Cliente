@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        Crea un array vacío que llamaremos tabú, a través del promp debe pedir al usuario que 
+        introduzca palabras que consideré tabú y almacenarlas en el array. El programa dejará de pedir 
+        palabras cuando el usuario escriba Ninguna ó ninguna. Después, pedirá un texto por el prompt 
+        y lo escribirá por pantalla sustituyendo las palabra tabú por el texto: ¡#$@*!
+        */
+        let expresion14 = /Ninguna/;
+        let expresion14A = /ninguna/;
+
+
+        var palabra ="";
+        var contador = 0;
+        let vectorTabu = [];
+
+
+        while (expresion14.test(palabra) != true ) {
+            palabra = prompt("palabras tabus: ");
+            vectorTabu[contador] = palabra;
+            contador++;
+            if (expresion14A.test(palabra) == true ) {
+                break;
+            }
+        }
+
+        var palabraAComprobar = prompt("Compribacion de si es palabra tabu: ");
+        var resultado = false;
+        var palabraSuprimida = "";
+        var expresionR = /[a\\e\\i\\o\\u]/;
+
+        for (let index = 0; index < vectorTabu.length; index++) {
+            if (palabraAComprobar == vectorTabu[index]) {
+
+                var palabraTabu = vectorTabu[index];
+                for (let index = 0; index < palabraTabu.length; index++) {
+                    if (expresionR.test(palabraTabu.charAt(index))) {
+                        palabraSuprimida += palabraTabu.charAt(index).replace(expresionR,"*");
+                    }else{
+                        palabraSuprimida += palabraTabu.charAt(index);
+                    }
+                }
+
+                console.log("la palabra (" + palabraSuprimida + ") es tabu. ");
+                resultado = true;
+            }
+        }
+        if (resultado == false) {
+            console.log("No es una palabra tabu");
+        }
+
+
+    </script>
+    
+</body>
+</html>

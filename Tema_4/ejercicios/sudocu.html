@@ -35,26 +35,6 @@
     -->
     <table class="default" cellspacing="0" cellpadding="0">
     <script>
-        /*
-        function numeroAleatorio() {
-            numero = Math.random() * (9 - 0) + 0;
-            let numeroSinDecimales = Math.trunc(numero);
-            return numeroSinDecimales;
-        }
-        */
-        /*
-        const matrizA = [
-            [9,6,8,7,4,5,3,1,2],
-            [7,4,2,7,5,4,1,3,9],
-            [1,5,3,4,7,5,3,9,2],
-            [9,2,8,7,4,5,3,1,6],
-            [9,3,8,4,5,7,6,1,2],
-            [9,6,1,7,4,5,3,8,2],
-            [1,6,8,4,5,7,3,8,2],
-            [3,6,8,7,4,5,9,1,2],
-            [9,6,2,7,4,5,3,1,8]
-        ];
-    */
             const matriz = [
                 [9,6,8,7,4,5,3,1,2],
                 [7,4,2,7,5,4,1,3,9],
@@ -68,54 +48,43 @@
             ];
             //const matrizA = [[]];
             var  matrizA = new Array(9).fill(new Array(9));
+            contadorB = 0; 
+
 
             for (var i = 0; i < matrizA.length; i++) {
-                var numeroAleatorio = Math.floor(Math.random() * (8 - 1) + 1);
-                console.log("numeroAleatorio " + numeroAleatorio);  
+                var numeroAleatorio = Math.floor(Math.random() * (9 - 1) + 1);
+                document.write("<tr>");
+                contador = 0;
+                contadorB++;
+
+
                 for (var j = 0; j < matrizA.length; j++) {
                     matrizA[i][j] = matriz[numeroAleatorio][j];
-                    console.log("A " + matrizA[i][j]);
+                    contador++;
+                    if(contadorB == 3 && contador == 3){
+                        document.write("<td id='dosBordes'>" + matrizA[i][j] + "</td>");
+                        contador = 0;  
+                    }
+                    else if (contador == 3) {
+                        document.write("<td id='bordeDerecho'>" + matrizA[i][j] + "</td>");
+                        contador = 0;  
+                    }
+                    else if(contadorB == 3){
+                        document.write("<td id='bordeAbajo'>" + matrizA[i][j] + "</td>");
+                    }
+                    else{
+                        document.write("<td>" + matrizA[i][j] + "</td>");       
+                    }
                 }
-                console.log("linea " + i);  
+
+
+                if(contadorB == 3){
+                contadorB = 0;
+                }
+            document.write("</tr>");
                 
             }
             console.log(matrizA);
-        
-
-        contadorB = 0;       
-        for (var i = 0; i < matrizA.length; i++) {
-            document.write("<tr>");
-            contador = 0;
-            contadorB++;
-            for (let j = 0; j < matrizA.length; j++) {
-                contador++;
-                if(contadorB == 3 && contador == 3){
-                    document.write("<td id='dosBordes'>" + matrizA[i][j] + "</td>");
-                    contador = 0;  
-                }
-                else if (contador == 3) {
-                    document.write("<td id='bordeDerecho'>" + matrizA[i][j] + "</td>");
-                    contador = 0;  
-                }
-                else if(contadorB == 3){
-                    document.write("<td id='bordeAbajo'>" + matrizA[i][j] + "</td>");
-                }
-                else{
-                    document.write("<td>" + matrizA[i][j] + "</td>");       
-                }
-            }
-            if(contadorB == 3){
-                contadorB = 0;
-            }
-            document.write("</tr>");
-            
-        }
-
-
-
-
-    //console.log(matriz) 
-    //console.log(numeroAleatorio());
 
 
     </script>
