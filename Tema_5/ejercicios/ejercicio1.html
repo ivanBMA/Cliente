@@ -1,0 +1,72 @@
+<html>
+<head>
+</head>
+<body>
+    <strong class= personaje id = "1">el temible dragon </strong> 
+    lucho arduamente contra 
+    <strong class= "personaje" id = "2"> el valeroso caballero </strong> 
+    para salvar a 
+    <strong class= "personaje" id = "3"> la princesa </strong> en 
+    <strong class= "lugar"> su temible guarida </strong>
+
+<script>
+    /*
+    //1. Esquematiza en un papel como es el arbol del DOM.
+    //2. Crear un menú con cuatro opciones:
+        //Opcion 1: Historia pirata: la historia será ahora de un mono que lucha contra una serpiente para salvar un platano en una isla tropical.
+        //Opción 2: Permutar los personajes a la derecha (personaje 1 pasa a ser personaje 2, personaje 2 a ser personaje 3 y personaje 3 a ser personaje 1.
+        //Opción 3: Modificar personaje 1, personaje 2 o personaje 3 con una entrada por el prompt (solo debe cambiar el nombre).
+        //Opcion 4: Devuelve la historia original.
+    //3. Añade un cuarto personaje con id="4" y un segundo lugar la torre desde el que miraba. Da a los lugares un id propio a cada uno (1 y 2) y trata de modificar la torre usando solo un getElementById. ¿Qué ocurre?
+    //¿Cómo lo solucionarias?
+    */
+    Opcion = prompt("Opcion del 1 - 4");
+    switch (Opcion) {
+        case "1":
+                
+                document.getElementById("2").innerHTML="un mono";
+                document.getElementById("1").textContent="una serpiente";
+                document.getElementById("3").textContent="un platano";
+                document.getElementsByTagName("lugar").textContent="isla tropical";
+
+            break;
+
+        case "2":
+                var uno = document.getElementById("1");
+
+                document.getElementById("1").textContent = document.getElementById("2").innerHTML;
+                document.getElementById("2").textContent = document.getElementById("3").innerHTML;
+                document.getElementById("3").textContent = uno.innerHTML;
+            break;
+
+        case "3":
+                var uno = document.getElementById("1").innerHTML;
+                var unoA  = uno.split(" ");
+                unoA[2] = prompt("villano : ");
+
+                var dos = document.getElementById("2").innerHTML;
+                var dosA  = dos.split(" ");
+                dosA[2] = prompt("heroe : ");
+
+                var tres = document.getElementById("3").innerHTML;
+                var tresA  = tres.split(" ");
+                tresA[2] = prompt("lo que se consigue : ");
+
+                document.getElementById("1").innerHTML = unoA[0] + " " + unoA[1] + " " + unoA[2];
+                document.getElementById("2").innerHTML = dosA[0] + " " + dosA[1] + " " + dosA[2];
+                document.getElementById("3").innerHTML = tresA[0] + " " + tresA[1] + " " + tresA[2];
+
+            break;
+
+        case "4":
+            
+            break;
+    
+        default:
+            console.log("opciones solo del 1 - 4.")
+            break;
+    }
+
+</script>
+</body>
+</html>

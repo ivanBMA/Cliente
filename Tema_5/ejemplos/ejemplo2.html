@@ -11,7 +11,11 @@
     <span id="ceo" class="jefatura">Joaquin luqye.</span>
     <span id="cto" class="direccion">Lucia luqye.</span>
     <span id="cio" class="direccion">Marisa luqye.</span>
-    <script>
+    
+    <p id="angel">Una prueba de como funciona es <strong>Mejor que hablar en el vacio</strong> de cualquier cosa</p>
+    <p id="gargamel">Una prueb de como funciona es <azrael> mejor que hablar en el vacio </azrael> de <azrael>cualquier </azrael>cosa </p>
+<script>
+    /*
         let directores = document.getElementsByClassName("direccion");
         console.log(directores)
 
@@ -22,6 +26,13 @@
         let directoresB = document.getElementsByTagName("span");
         console.log("directoresB");
         console.log(directoresB)
-    </script>
+        */
+
+        var a = document.getElementById("gargamel");
+        var b = a.getElementsByTagName("azrael");
+        console.log(a);
+        console.log(b[0].innerHTML);
+        b[1].innerHTML = "<b> -> pasaaaaaaaa </b>";
+    </script> 
 </body>
 </html>
