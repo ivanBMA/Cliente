@@ -147,7 +147,14 @@
         */
 
 
+        const banderín= 'global';
+        const exRegular = /([a-z]*)/g;// /g <-- no devuelve grupos () <-- Los caracteres especiales conservan su significado.
+        const resultado = banderín.match(exRegular);
+
+        console.log(resultado);
+        console.log("-------------- hay141");
+
     </script>
-    
+    /
 </body>
 </html>
