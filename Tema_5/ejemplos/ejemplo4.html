@@ -1,0 +1,35 @@
+<html>
+<head>
+</head>
+<body>
+    <ul id="indiceSeccion">
+        <li class="menuSeccion">
+            <a href="">Moverse por el Dom</a>
+        </li>
+        <li class="menuSeccion">
+            <a href="">Manipular elementos</a>
+        </li>
+        <li class="menuSeccion">
+            <a href="">Manipular atributos</a>
+        </li>
+    </ul>
+
+
+    <script>
+        
+        let indice = document.getElementById("indiceSeccion");
+
+        for (let i = 0; i < indice.childNodes.length; i++) {
+            console.log(indice.childNodes[i].childNodes[0]);
+        }
+        
+        var contador = 0;
+        console.log(indice.firstChild);
+        while (contador < indice.childNodes.length) {
+            console.log(indice.childNodes[contador].nextSibling);
+            contador++;
+        }
+
+    </script>
+</body>
+</html>

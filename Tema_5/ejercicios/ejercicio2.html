@@ -1,0 +1,25 @@
+<html>
+<head>
+</head>
+<body>
+    <strong>palabra
+        <b class="objetibo">pal</b>
+        <b class="objetibo">que</b>
+    </strong>
+    <b class="objetibo">vas</b> 
+
+
+    <script>
+        //acceder a todos los que descenden un modo con etiqueta string que tenga clase objetivo
+        var a = document.getElementsByTagName("strong");
+        for (let index = 0; index < a.length; index++) {
+           b = a[index].getElementsByClassName("objetibo");
+           
+           for (let seconIndex = 0; seconIndex < b.length; seconIndex++) {
+                console.log(b[seconIndex].innerHTML);
+            }
+        }
+
+    </script>
+</body>
+</html>
