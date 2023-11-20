@@ -7,7 +7,7 @@
     <strong class= "personaje" id = "2"> el valeroso caballero </strong> 
     para salvar a 
     <strong class= "personaje" id = "3"> la princesa </strong> en 
-    <strong class= "lugar"> su temible guarida </strong>
+    <strong class= "lugar" id="1"> su temible guarida </strong>
 
 <script>
     /*
@@ -63,11 +63,46 @@
         case "4":
             
             break;
+        case "5":
+            /*
+            ¿Qué ocurre?
+                x- -> El Dom llama a los dos elementos con el id "1" aunque pertenezcan a diferentes clases.
+                
+            //¿Cómo lo solucionarias?
+                x- -> Le asignaria un id que no te estubiera utilizado y la clase la dejaria igual , 
+                      creo que asi no deberia haber ningun tipo de solapamiento.
+            */
+
+            var strongPersonaje = document.createElement("strong");
+            strongPersonaje.setAttribute("id", "4");//Le añado id
+            var newContenido = document.createTextNode(" Personaje_4 ");
+            strongPersonaje.appendChild(newContenido); //añade texto al div creado.
+
+            // añade el elemento creado y su contenido al DOM
+            var currentDiv = document.getElementById("4");
+            document.body.insertBefore(strongPersonaje, currentDiv);
+
+
+            var strongLugar = document.createElement("strong");
+            strongLugar.setAttribute("class", "lugar");//Le añado class
+            strongLugar.setAttribute("id", "2");//Le añado id
+            var newContenido2 = document.createTextNode(" torre_-_ ");
+            strongLugar.appendChild(newContenido2); //añade texto al div creado.
+
+            // añade el elemento creado y su contenido al DOM
+            var currentDiv2 = document.getElementsByClassName("lugar");
+            currentDiv2 = document.getElementById("2");
+            document.body.insertBefore(strongLugar, currentDiv2);
+        break;
     
         default:
             console.log("opciones solo del 1 - 4.")
             break;
     }
+
+    
+
+    
 
 </script>
 </body>
