@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="lista">
+        <li>Primer elemento hijo</li>
+        <li>segundo elemento hijo</li>
+    </ul>
+    <script>
+        let nuevoElemento = document.createElement("li");
+        nuevoElemento.innerHTML = "ultimo elemento insertado";
+        let nodoReferencia = document.querySelectorAll("li:nth-of-type(2)")[0];
+        let nodoPadre = nodoReferencia.parentNode;
+        nodoPadre.insertBefore(nuevoElemento,nodoReferencia);
+    </script>
+    
+</body>
+</html>

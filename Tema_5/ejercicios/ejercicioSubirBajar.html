@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .contenedor {
+  display: flex;
+  flex-direction: column;
+}
+        .div1 {
+            order: 1;
+        }
+
+        .div2 {
+            order: 2;
+        }
+
+        .div3 {
+            order: 3;
+        }
+        div{
+            border: solid 2px black;
+            float: left;
+            width: 100%;
+        }
+        p{
+            border: solid 2px blue;
+            float: left;
+
+        }
+        .subir{
+            border: solid 2px green;
+            width: 40px;
+            float: left;
+        }
+        .bajar{
+            border: solid 2px red;
+            width: 40px;
+            float: left;
+
+        }
+        .subir:hover{
+            border: solid 2px green;
+            width: 40px;
+            float: left;
+            background-color: green;
+            color: white;
+        }
+        .bajar:hover{
+            border: solid 2px red;
+            width: 40px;
+            float: left;
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <div id="1"  class="div1">
+            <p>cosa 1</p>
+            <button class="subir" type="button" onclick="subir('1')">+</button>
+            <button class="bajar" type="button" onclick="bajar('1')">-</button>
+        </div>
+        <br>
+        <div id="2" class="div2">
+            <p>cosa 2</p>
+            <button class="subir" type="button" onclick="subir('2')">+</button>
+            <button class="bajar" type="button" onclick="bajar('2')">-</button>
+        </div>
+        <br>
+        <div id="3" class="div3">
+            <p>cosa 3</p>
+            <button class="subir" type="button" onclick="subir('3')">+</button>
+            <button class="bajar" type="button" onclick="bajar('3')">-</button>
+        </div>
+    </div>
+    <script>
+        function subir(id) {
+            var elementoSubir = document.getElementById(id);
+            var nuevo = parseInt(id) - 1;
+            var texto = "div";
+            texto += nuevo;
+            console.log(texto);
+
+            
+            elementoSubir.setAttribute("class",texto);
+
+        }
+        function bajar(id) {
+            var elementoSubir = document.getElementById(id);
+            elementoSubir.setAttribute(id, "div" + (id + 1));
+        }
+        
+    </script>
+    
+</body>
+</html>
