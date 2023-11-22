@@ -80,19 +80,72 @@
     <script>
         function subir(id) {
             var elementoSubir = document.getElementById(id);
-            var nuevo = parseInt(id) - 1;
-            var texto = "div";
-            texto += nuevo;
-            console.log(texto);
-
+            var atributoBajar = document.getElementById(id).getAttribute('class'); 
             
+            var split = atributoBajar.split("v");
+            for (let index = 0; index < split.length; index++) {
+                if (index == 1) {
+                    split[index]--; 
+                }
+            }
+            var texto = "div";
+            texto += split[1];
+
+            var elementoBajar = elementoSubir.nextElementSibling;
+            var atributoBajar = document.getElementById(id-1).getAttribute('class'); 
+            
+            var split = atributoBajar.split("v");
+            for (let index = 0; index < split.length; index++) {
+                if (index == 1) {
+                    split[index]++; 
+                }
+            }
+            var textoA = "div";
+            textoA += split[1];
+
+            elementoSubir.removeAttribute("class");
+            elementoBajar.removeAttribute("class");
             elementoSubir.setAttribute("class",texto);
+            elementoBajar.setAttribute("class",textoA);
+
 
         }
         function bajar(id) {
             var elementoSubir = document.getElementById(id);
-            elementoSubir.setAttribute(id, "div" + (id + 1));
+            var atributoBajar = document.getElementById(id).getAttribute('class'); 
+            
+            var split = atributoBajar.split("v");
+            for (let index = 0; index < split.length; index++) {
+                if (index == 1) {
+                    split[index]++; 
+                }
+            }
+            var texto = "div";
+            texto += split[1];
+            console.log(texto);
+
+            var elementoBajar = elementoSubir.nextElementSibling;
+            
+            var atributoBajar = document.elementoBajar.getAttribute('class'); 
+            console.log(atributoBajar);
+
+            var split = atributoBajar.split("v");
+            for (let index = 0; index < split.length; index++) {
+                if (index == 1) {
+                    split[index]--; 
+                }
+            }
+            var textoA = "div";
+            textoA += split[1];
+
+            elementoSubir.removeAttribute("class");
+            elementoSubir.nextElementSibling.removeAttribute("class");
+            elementoSubir.setAttribute("class",texto);
+            elementoSubir.nextElementSibling.setAttribute("class",textoA);
+
+
         }
+        
         
     </script>
     
