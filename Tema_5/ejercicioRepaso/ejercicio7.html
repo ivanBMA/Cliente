@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Ejercicio DOM</title>
+        <style type="text/css">
+            .oculto { display: none; }
+            .visible { display: inline; }
+        </style>
+
+        <script type="text/javascript">
+            /*
+            7.- Sobre el siguiente código, realiza las siguientes modificaciones:
+                    a) Cuando el usuario pinche sobre el enlace se debe mostrar el texto.
+                    b) El enlace debe dejar de mostrarse.
+
+            */
+            function muestra() {
+                //cambio la clase de p visible
+                var elemento = document.getElementById("adicional");
+                elemento.setAttribute("class","visible");
+                //inserto la clase oculto a al enlace
+                var elementoB = document.getElementById("enlace");
+                elementoB.setAttribute("class","oculto");
+
+            }
+        </script>
+    </head>
+    <body>
+        <p id="texto">Texto ejercicio 2
+            <span id="adicional" class="oculto"> segunda parte </span>
+        </p>
+        <a id="enlace" href="#" onclick="muestra()">Seguir leyendo</a>
+    </body>
+</html>

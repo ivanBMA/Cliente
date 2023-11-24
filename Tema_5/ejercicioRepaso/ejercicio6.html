@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Ejercicio DOM básico</title>
+       </head>
+       <body>
+            <p>
+                Prueba A
+                <a href="http://prueba">enlace A</a>
+                Prueba B
+                <a href="http://prueba2">enlace B</a>
+                Prueba C
+            </p>
+            <p>
+                Prueba D
+                <a href="http://prueba">enlace C</a>
+                Prueba E
+                <a href="http://prueba3">enlace D</a>
+                Prueba F
+            </p>
+            <p>
+                Prueba G
+                <a href="http://prueba">enlace G</a>
+                Prueba H
+                <a href="http://prueba4">enlace H</a>
+                Prueba I
+                <a href="http://prueba5">enlace I</a>
+                Prueba J.
+            </p>
+
+            <script>
+                /*
+                6.- A partir de la página web proporcionada, esboza como debería ser el árbol del DOM y 
+                    contesta a las preguntas. Utiliza los métodos de nodos para comprobar el resultado.
+                            a) Número de enlaces de la página
+                            b) Dirección a la que enlaza el penúltimo enlace
+                            c) Número de enlaces que enlazan a http://prueba
+                            d) Número de enlaces del tercer párrafo
+                */
+                var todasLasA = document.getElementsByTagName("a")
+                var numeroA = document.getElementsByTagName("a").length;
+                console.log(numeroA);
+
+
+                var numeroB = todasLasA[todasLasA.length - 1];
+                console.log(numeroB);
+
+
+                var contador = 0;
+                for (let index = 0; index < todasLasA.length; index++) {
+                    if (todasLasA[index].getAttribute('href') == "http://prueba") {
+                        contador++;
+                    }
+                }
+                console.log("El numero de veces que se repite 'http://prueba' es: " + contador);
+
+
+                var todasLasP = document.getElementsByTagName("p");
+                var numeroEnlacesTercerP = todasLasP[2].getElementsByTagName("a").length;
+                console.log("Cuantos enlaces tiene el 3 p : " + numeroEnlacesTercerP);
+
+
+            </script>
+       </body>
+</html>

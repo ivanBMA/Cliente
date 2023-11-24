@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        1.- Crea un programa en el que crees 4 variables: 2 cadenas y 2 números, con los siguientes 
+        valores: nombre, apellido, edad y año de nacimiento del usuario, que los introducirá 
+        mediante prompt.
+
+            a) Muestra en un alert una frase que incluya comillas simples.
+            b) Muestra en un alert tu nombre y apellidos separados por un salto de línea.
+            c) Muestra en un alert la suma de las variables edad y año de nacimiento.
+            Comenta el código con los comentarios que estimes necesarios.
+
+    -->
+    
+    <script>
+        var nombre = prompt("nombre: ");
+        var apellido = prompt("apellido:");
+        var edad =  Number(prompt("edad:"));//se usa la clase number por que sino entiende que es una cadena de caracteres
+        var año = Number(prompt("año:"));
+        var suma = año + edad;
+        
+        alert(" las comillas simples -> ' ' <-");
+        alert(nombre + "\n" + apellido);
+        alert("edad + año = " + suma);
+
+    </script>
+</body>
+</html>

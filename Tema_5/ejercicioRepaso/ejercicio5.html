@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        5. - Elabora un script que realice lo siguiente:
+                a) Solicitará el nombre de un alumno.
+                b) Solicitará el primer apellido de un alumno.
+                c) Solicitará la edad del alumno.
+                d) Calculará el año de nacimiento sin tener en cuenta el mes.
+                e) Mostrará el nombre completo del alumno y su año de nacimiento.
+    -->
+
+    <script>
+        var nombre = prompt("Nombre: ");
+        var apellido = prompt("Apellido: ");
+        var edad = Number(prompt("edad: "));
+        var añoNacimiento = 2023 - edad;
+
+        alert("nombre: " + nombre + " apellido: " + " año de nacimiento: " + añoNacimiento);
+
+    </script>
+</body>
+</html>

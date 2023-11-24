@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+    4. - Modifica el ejercicio anterior de la siguiente forma:
+
+            a) Se pedirá al usuario que escriba el nombre y apellido del primer presidente de la 
+            democracia española.
+
+            b) En caso de que el usuario introduzca mal nombre y apellido, muestre como mensaje: 
+            “ERROR. Inténtelo de nuevo. ¿Cuál fue el primer presidente de la democracia española?”
+            
+            c) En caso de que el usuario introduzca el nombre del presidente (solamente) el prompt 
+            muestre como mensaje “Te falta el apellido. ¿Cuál fue el primer presidente de la 
+            democracia española?”.
+            
+            d) En caso de que el usuario introduzca el apellido del presidente (solamente) el prompt 
+            muestre como mensaje “Te falta el nombre. ¿Cuál fue el primer presidente de la democracia 
+            española?”.
+            
+            ->>Comenta el código con los comentarios que estimes necesarios.
+
+    -->
+    <script>
+
+        var nombre = "";
+        var apellido = "";
+
+        while((nombre != "jacinto") || (apellido != "paco")){
+            nombre = prompt("escriba el nombre del primer presidente de la democracia");
+            apellido = prompt("escriba el apellido del primer presidente de la democracia");
+
+            if(apellido == "paco" && nombre == "jacinto"){
+                alert("todo bien.");
+            }else if(apellido != "paco" && nombre == "jacinto"){
+                alert("El nombre esta bien pero el apellido esta mal");
+            }else if(apellido == "paco" && nombre != "jacinto"){
+                alert("El apellido esta bien pero el nombre no.");
+            }else{
+                alert("ERROR. Inténtelo de nuevo.");
+            }
+        }
+
+        alert("salio del bucle");
+
+    </script>
+    
+</body>
+</html>
