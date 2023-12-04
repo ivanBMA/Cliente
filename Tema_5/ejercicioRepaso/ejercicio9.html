@@ -9,13 +9,7 @@
 
             */
             function enviar() {
-                console.log("__");
-                var a = document.getElementById("respuesta").innerHTML;
-                console.log(document.getElementsByTagName('p').innerHTML);
-                console.log("__");
-
-
-                if (document.getElementsByTagName("respuesta").innerHTML == "baca") {
+                if (document.getElementById("respuesta").value == "baca") {
                     alert("si");
                 }else{
                     alert("no");
@@ -28,6 +22,6 @@
         <p> ¿Quien es el presidente de españa? </p>
         <input type="text" id="respuesta" value="responda aquí">
         <button type="button" onclick="enviar()">enviar</button>
-        <p><div id="resultado" /></p>
+        <p><div id="resultado" ></div></p>
     </body>
 </html>
