@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <p>
+            Asi se capturan eventos asociados a un <span id="miSpan">elemento</span> HTML.
+        </p>
+    </section>
+
+    <script>
+        let miSection = document.getElementsByTagName("section")[0];
+        let miP = document.getElementsByTagName("p")[0];
+        let miSpan = document.getElementById("miSpan");
+
+        miSection.addEventListener("click",()=>{
+            console.log("<section>: Capturando el evento.");
+        });
+
+        miP.addEventListener("click",()=>{
+            console.log("<p>: Capturando el evento.");
+        });
+
+        miSpan.addEventListener("click",()=>{
+            console.log("<span>: Capturando el evento.");
+        });
+        
+        // -------------------------------------------------------------
+
+        miSection.addEventListener("click",()=>{
+            console.log("<section>: Capturando el evento.");
+        },{Capture:true});
+
+        miP.addEventListener("click",()=>{
+            console.log("<p>: Capturando el evento.");
+        },{Capture:true});
+
+        miSpan.addEventListener("click",()=>{
+            console.log("<span>: Capturando el evento.");
+        },{once:true});
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <section>
+        <p>
+            Asi se capturan eventos asociados a un <span id="miSpan">elemento</span> HTML.
+        </p>
+    </section>
+
+    <script>
+        let miSection = document.getElementsByTagName("section")[0];
+        let miP = document.getElementsByTagName("p")[0];
+        let miSpan = document.getElementById("miSpan");
+        let  veces = 0;
+
+        /*
+        miSection.addEventListener("click",(evento)=>{
+            console.log(`<section>: Capturando el evento ${veces} veces.`);
+        });
+
+        miP.addEventListener("click",(evento)=>{
+            console.log(`<p>: Capturando el evento ${veces} veces.`);
+            veces++;
+            if(veces > 1){
+               alert("paro");
+               evento.stopPropagation();
+            }
+        });
+
+        miSpan.addEventListener("click",(evento)=>{
+            
+            console.log(`<span>: Capturando el evento ${veces} veces.`);
+                
+        });
+    */
+
+        miSection.addEventListener("click",(evento)=>{
+            console.log(`<section>: Capturando el evento ${veces} veces.`);
+        },{Capture:true});
+
+        miP.addEventListener("click",(evento)=>{
+            console.log(`<p>: Capturando el evento ${veces} veces.`);
+            veces++;
+            if(veces > 1){
+               alert("paro");
+               evento.stopPropagation();
+            }
+        },{Capture:true});
+
+        miSpan.addEventListener("click",(evento)=>{
+            console.log(`<span>: Capturando el evento ${veces} veces.`);
+        },{Capture:true});
+    </script>
+</body>
+</html>
