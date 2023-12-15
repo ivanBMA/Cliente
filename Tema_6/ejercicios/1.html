@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input id="boton" type="button" value="boton" onclick="">
+    
+    <script>
+        let veces = 0;
+
+        let miBoton = document.getElementsByTagName("input")[0];
+        miBoton.addEventListener("click",(evento)=>{
+            console.log("hola");
+            evento.stopImmediatePropagation();
+        });
+
+        miBoton.addEventListener("click",(evento2)=>{
+            console.log("hola 2");
+       });
+
+       miBoton.addEventListener("click",(evento3)=>{
+            console.log("hola 3");
+       });
+
+        
+
+    </script>
+</body>
+</html>

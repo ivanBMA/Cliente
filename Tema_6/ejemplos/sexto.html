@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a id="miEnlace" href="https://www.parainfo.es">Enlace.</a>
+    <span id="miSpan">Ejecutar el evento del enlace</span>
+    
+    <script>
+        console.log("cuando se ejecuta");
+        let miSpan = document.getElementById("miSpan");
+        let miEnlace = document.getElementById("miEnlace");
+        setTimeout(() => {
+            cosa()}, 3000);
+
+        miEnlace.addEventListener("click", (evento)=>{
+            evento.preventDefault();
+            console.log("Gestor del evento del enlace.");
+            
+        });
+        
+
+        /*
+        miSpan.addEventListener("click", ()=>{
+            let miEvento = new Event("click");
+            console.log("lanzando evento.");
+
+            setTimeout(() => {
+                miEnlace.dispatchEvent(miEvento);
+            }, 1000);
+        });
+*/
+        function cosa() {
+            miSpan.addEventListener("click", ()=>{
+                let miEvento = new Event("click");
+                console.log("lanzando eventoaaaaaaa.");
+                miEnlace.dispatchEvent(miEvento);
+            });
+        }
+
+        
+
+    </script>
+</body>
+</html>
