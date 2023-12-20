@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <img id="myimage" src="../../img/walli.jpg" alt="">
+
+    <script>
+        myimage.onclick = function(e) {
+        var ratioX = e.target.naturalWidth / e.target.offsetWidth;
+        var ratioY = e.target.naturalHeight / e.target.offsetHeight;
+
+        var domX = e.x + window.pageXOffset - e.target.offsetLeft;
+        var domY = e.y + window.pageYOffset - e.target.offsetTop;
+
+        var imgX = Math.floor(domX * ratioX);
+        var imgY = Math.floor(domY * ratioY);
+        
+        /*
+            console.log("X");
+            console.log(imgX);
+            console.log("Y");
+            console.log(imgY);
+        */
+        if ((imgX >= 1831  && imgX <= 1880) && (imgY >= 697  && imgY <= 766)) {
+            alert("!Encontantes a wally");
+        }
+        };
+    </script>
+</body>
+</html>

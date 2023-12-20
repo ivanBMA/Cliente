@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--4 botones de tipo casissa , primero para ticar desalluno, 2 comida, 3 cena, 4 todos-->
+    <button id="b1">Botton 1</button>
+    <button id="b2">Botton 2</button>
+    <button id="b3">Botton 3</button>
+    <button id="b4">Botton 4</button>
+    <br>
+    <label for="">desalluno</label>
+    <input type="checkbox" name="" value="" id="b11">
+    <label for="">comida</label>
+    <input type="checkbox" name="" value="comida" id="b22">
+    <label for="">cena</label>
+    <input type="checkbox" name="" value="cena" id="b33">
+
+
+    <script>
+        let uno = document.getElementById("b1").addEventListener("click",function puno(evento){
+            /*
+            var elemento = document.getElementById("b1");
+            elemento.setAttribute("id","b1b");
+            */
+            document.getElementById("b11").checked = true;
+        });
+      
+        
+
+        let dos = document.getElementById("b2").addEventListener("click",function pdos(evento){
+            document.getElementById("b22").checked = true;
+
+        });
+
+        let tres = document.getElementById("b3").addEventListener("click",function ptres(evento){
+            document.getElementById("b33").checked = true;
+
+        });
+        let contador=0;
+        let cuatro = document.getElementById("b4").addEventListener("click",function pcuatro(evento){
+            contador=contador+1;
+            if(contador%2===1){
+                document.getElementById("b22").checked = true;
+                document.getElementById("b33").checked = true;
+                document.getElementById("b11").checked = true;
+            }else{
+                document.getElementById("b22").checked = true;
+                document.getElementById("b33").checked = true;
+                document.getElementById("b11").checked = true;
+            }
+        });
+
+    </script>
+</body>
+</html>

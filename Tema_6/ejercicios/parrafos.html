@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <p id="uno">uno</p>
+    <p id="dos">dos</p>
+    
+    <script>
+        //event listener que al hacer click con una funcion anonima saque 1 por consola
+        let p = document.getElementById("uno");
+
+        p.addEventListener("click",() => {
+    
+            console.log("1.");
+            
+        });
+        p.removeEventListener('click', () => {
+    
+    console.log("1.");
+        });
+    
+
+
+        //event listener que al hacer click llame a una funcion decir 2 por consola
+        let p2 = document.getElementById("dos");
+
+        p2.addEventListener("click", pdos);
+        function pdos() {
+            console.log("2.");
+            
+        }
+        p2.removeEventListener('click', pdos);
+        
+    </script>
+</body>
+</html>

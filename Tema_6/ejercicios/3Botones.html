@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--    
+        hacer 3 botones
+        Hañadir un lisener con el evento en click que saque por consola
+        hola 1,2,3
+    -->
+
+    <button id="uno">uno</button>
+    <button id="dos">dos</button>
+    <button id="tres">tres</button>
+
+    <script>
+        let uno = document.getElementById("uno").addEventListener("click",function puno(evento){
+            console.log("hola 1.");
+        });
+
+        let tres = document.getElementById("tres").addEventListener("click",function ptres(evento){
+            console.log("hola 3.");
+        });
+
+        let dos = document.getElementById("dos").addEventListener("click",function pdos(evento){
+            console.log("hola 2.");
+        });
+
+        let botones = document.getElementsByTagName(":button");
+        for (const element of botones) {
+            console.log("hola");
+
+            console.log(element);
+        };   
+
+    </script>
+</body>
+</html>
