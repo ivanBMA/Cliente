@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+            let pro1 = new Promise((exito)=>{
+                exito("Promesa 1: hecho.");
+            });
+            let pro2 = new Promise((exito)=>{
+                exito("Promesa 2: hecho.");
+            });
+            let pro3 = new Promise((exito)=>{
+                exito("Promesa 3: hecho.");
+            });
+            let pro4 = new Promise((exito)=>{
+                setTimeout(()=>{exito("Promesa 4: hecho.")}, 5000);
+            });
+
+            let proTodas = Promise.all([pro1,pro2,pro3,pro4]);
+            proTodas.then((resultados)=>{
+                for(let resultado of resultados){
+                    console.log(resultado);
+                }
+                console.log("Sincronizadas");
+            });
+
+    </script>
+    
+</body>
+</html>
