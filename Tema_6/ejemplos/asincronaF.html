@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+    <script>
+        let  pro1 = new Promise((exito) =>{
+            exito("Promiesa 1: hecho.");
+        });
+
+        let  pro2 = new Promise((exito) =>{
+            exito("Promiesa 2: hecho.");
+        });        
+        let  pro3 = new Promise((exito) =>{
+            exito("Promiesa 3: hecho.");
+        });
+        let  pro4 = new Promise((exito) =>{
+            setTimeout(()=>{exito("Promesa 4: hecho.")},3000);
+        });
+
+        async function resultado(){
+            let resultado1 = await pro1;
+            console.log(resultado1);
+            let resultado2 = await pro2;
+            console.log(resultado2);
+            let resultado3 = await pro3;
+            console.log(resultado3);
+            let resultado4 = await pro4;
+            console.log(resultado4);
+        }
+        resultado();
+        setTimeout(()=>{console.log("hola")},3000);
+
+
+    </script>
+    
+</body>
+</html>

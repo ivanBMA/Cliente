@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="contenedor">
+        <h2 class="palabra"> El </h2>
+        <h2 class="palabra"> callback </h2>
+        <h2 class="palabra">Hell</h2>
+    </div>
+
+    <script>
+        let palabras = document.querySelectorAll(".palabra");
+        let animar = (palabra)=>{
+            palabra.classList.add("animar");
+        }
+        
+
+        function Primera(palabras){
+            return new Promise(function(resolve, reject){
+                setTimeout(()=> {
+                    animar(palabras[0]);
+                }, 3000);
+            })
+        }
+
+        function Seguna(palabras){
+            return new Promise(function(resolve, reject){
+                setTimeout(()=> {
+                animar(palabras[1]);
+                }, 6000);
+            })
+            
+        }
+
+        function tercera(palabras){
+            return new Promise(function(resolve, reject){
+                setTimeout(()=> {
+                    animar(palabras[2]);
+                }, 9000);
+            })
+        }
+        function enFracaso(error){
+            console.log(`Error: ${error}`);
+        }
+
+        let hoyPromesa = Primera(palabras);
+        hoyPromesa
+            .then(Seguna(palabras))
+            .then(tercera(palabras))
+            .catch(enFracaso);
+    </script>
+    
+</body>
+</html>
