@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="contenedor">
+        <h2 class="palabra"> El </h2>
+        <h2 class="palabra"> callback </h2>
+        <h2 class="palabra">Hell</h2>
+    </div>
+
+    <script>
+        let palabras = document.querySelectorAll(".palabra");
+        let animar = (palabra)=>{
+            palabra.classList.add("animar");
+        }
+        
+
+        function Primera(func){
+            return new Promise(function(resolve, reject){
+                setTimeout(()=> {
+                    func(palabras[0]);
+                    resolve(func);
+                }, 2000);
+            });
+        };
+
+        function Seguna(func){
+            return new Promise(function(resolve, reject){
+                setTimeout(()=> {
+                    func(palabras[1]);
+                    resolve(func);
+                }, 2000);
+            });
+            
+        };
+
+        function tercera(func){
+            return new Promise(function(resolve, reject){
+                setTimeout(()=> {
+                    func(palabras[2]);
+                    //resolve(func);
+                }, 2000);
+            });
+        };
+
+        async function resultado(fun){
+            let resultado1 = await Primera(fun);
+            let resultado2 = await Seguna(resultado1);
+            let resultado3 = await tercera(resultado2);
+        }
+
+        resultado(animar);
+        
+
+    </script>
+    
+</body>
+</html>
