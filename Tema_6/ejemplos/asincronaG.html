@@ -11,8 +11,9 @@
 
         fetch("https://servicios.ine.es/wstempus/js/ES/OPERACIONES_DISPONIBLES")
         .then(respuesta=>{
-            console-log(`codigo respuesta: ${respuesta.status} = ${respuesta.statusText}`);
-            console.log(respuesta.json());
+            console.log(`codigo respuesta: ${respuesta.status} = ${respuesta.statusText}`);
+            console.log(respuesta.json())
+            console.log(respuesta.json([[PromiseResult]]:Array(14)))
         })
         .catch(error=>{
             console.log(error);

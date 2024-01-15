@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+</head>
+<body>
+
+    <ul>
+        <li>Lista 1 - Item 1</li>
+        <li>Lista 1 - Item 2</li>
+        <li>Lista 1 - Item 3</li>
+    </ul>
+
+    <ul>
+        <li>Lista 2 - Item 1</li>
+        <li>Lista 2 - Item 2</li>
+        <li>Lista 2 - Item 3</li>
+    </ul>
+
+    <ul>
+        <li>Lista 3 - Item 1</li>
+        <li>Lista 3 - Item 2</li>
+        <li>Lista 3 - Item 3</li>
+    </ul>
+
+   <script>
+        console.log("");
+
+
+        Primera = new Promise(function(resolve, reject){
+                setTimeout(()=> {
+
+                        console.log("Comienzo")
+                        resolve();
+
+                    }, 1000);
+            })
+        
+
+         Seguna = new Promise(function(resolve, reject){
+                setTimeout(()=> {
+                   
+                        var newItem = document.createElement('li');
+                        newItem.textContent = 'Lista 3 - New Item';
+                        var body = document.body;
+                        var thirdList = body.getElementsByTagName('ul')[2];
+                        thirdList.appendChild(newItem);
+
+                        resolve();
+                }, 3000);
+            })
+        
+
+         tercera = new Promise(function(resolve, reject){
+                setTimeout(()=> {
+                   
+                        var newUl = document.createElement('ul');
+                        var newItem1 = document.createElement('li');
+                        newItem1.textContent = 'New Lista - Item 1';
+                        var newItem2 = document.createElement('li');
+                        newItem2.textContent = 'New Lista - Item 2';
+                        var newItem3 = document.createElement('li');
+                        newItem3.textContent = 'New Lista - Item 3';
+                        newUl.appendChild(newItem1);
+                        newUl.appendChild(newItem2);
+                        newUl.appendChild(newItem3);
+                        var body = document.body;
+                        var secondLista = body.querySelectorAll('ul')[1];
+                        body.insertBefore(newUl, secondLista.nextElementSibling);
+                        resolve();    
+                }, 1000);
+                
+            })
+        
+
+        function enFracaso(error){
+            console.log(`Error: ${error}`);
+        }
+
+        async function resultado(){
+            let resultado1 = await Primera;
+            let resultado2 = await Seguna.resultado1;
+            let resultado3 = await tercera.resultado2;
+        }
+
+        resultado();
+   </script>
+</body>
+</html>
