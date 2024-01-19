@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    ul{
+        border: 2px solid black;
+        font-size: 22px;
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;   
+    }
+</style>
 
 <body>
 
@@ -15,7 +22,7 @@
             let paises = ["España", "Holanda", "Austria", "Italia"];
             var tiempo = Math.floor(Math.random() * (8 - 1) + 1);
 
-            const resultados = paises.map((pais) => ({
+            globalThis.resultados = paises.map((pais) => ({
                 nombre: pais,
                 valor: Math.random() * (1 - 0) + 0,
             }));
@@ -37,32 +44,36 @@
 
             return new Promise(function (resolve, reject) {
                 setTimeout(() => {
-                    return array[numeroVector];
+                    globalThis.clima = array[numeroVector];
                     resolve();
                 }, (tiempo * 1000));
             });
         }
 
-        function unificarHtml(paises, tiempo) {
+        function unificarHtml() {
 
             var newUl = document.createElement('ul');
             var newItem1 = document.createElement('li');
-            newItem1.textContent = paises[0].nombre + " vale " + paises[0].valor + " tiempo " + timepo;
+            newItem1.textContent = resultados[0].nombre + " vale " + resultados[0].valor;
             var newItem2 = document.createElement('li');
-            newItem2.textContent = paises[1].nombre + " vale " + paises[1].valor;
+            newItem2.textContent = resultados[1].nombre + " vale " + resultados[1].valor;
             var newItem3 = document.createElement('li');
-            newItem3.textContent = paises[2].nombre + " vale " + paises[2].valor;
+            newItem3.textContent = resultados[2].nombre + " vale " + resultados[2].valor;
             var newItem4 = document.createElement('li');
-            newItem4.textContent = paises[3].nombre + " vale " + paises[3].valor;
+            newItem4.textContent = resultados[3].nombre + " vale " + resultados[3].valor;
+            var newItem5 = document.createElement('li');
+            newItem5.textContent = "El clima es " + clima;
 
             newUl.appendChild(newItem1);
             newUl.appendChild(newItem2);
             newUl.appendChild(newItem3);
             newUl.appendChild(newItem4);
+            newUl.appendChild(newItem5);
 
             var body = document.body;
-            var secondLista = body.querySelectorAll('ul')[1];
             body.appendChild(newUl);
+
+            
         }
 
 
@@ -71,33 +82,25 @@
 
             let resultado1 = await metereologico();
             let resultado2 = await bolsa(resultado1);
-            unificarHtml(resultado1, resultado2);
+            unificarHtml();
         }
-
-        resultado();
-        setInterval(() => {
-            unificarHtml(metereologico(), bolsa());
-                }, 2000);
     */
-        paises = bolsa();
-        var newUl = document.createElement('ul');
-        var newItem1 = document.createElement('li');
-        newItem1.textContent = paises[0].nombre + " vale " + paises[0].valor;
-        var newItem2 = document.createElement('li');
-        newItem2.textContent = paises[1].nombre + " vale " + paises[1].valor;
-        var newItem3 = document.createElement('li');
-        newItem3.textContent = paises[2].nombre + " vale " + paises[2].valor;
-        var newItem4 = document.createElement('li');
-        newItem4.textContent = paises[3].nombre + " vale " + paises[3].valor;
+        function repetir() {
+            let hoyPromesa = metereologico();
+            hoyPromesa
+                .then(bolsa())
+                .then(unificarHtml());
+        }
+        
 
-        newUl.appendChild(newItem1);
-        newUl.appendChild(newItem2);
-        newUl.appendChild(newItem3);
-        newUl.appendChild(newItem4);
+        setInterval(() => {
+            repetir();
+        }, 2000);
+        
+        
+        
 
-        var body = document.body;
-        var secondLista = body.querySelectorAll('ul')[1];
-        body.appendChild(newUl);
+        
 
 
 
