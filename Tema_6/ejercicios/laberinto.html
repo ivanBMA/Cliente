@@ -6,39 +6,119 @@
     <title>Document</title>
 </head>
 <style>
+    img{
+        width: 500px;
+        height:500px;
+        position: relative;
+    }
    #div1{
-    width: 300px;
-    height: 300px;
-    border: 4px solid black;
+    width: 20%;
+    height: 100px;
+    float: left;
    }
    #div2{
-    width: 100px;
+    width: 20%;
     height: 100px;
     border: 4px solid red;
+    float: left;
+    background-color: red;
+   }
+   #div3{
+    width: 20%;
+    height: 100px;
+    border: 4px solid blue;
+    float: left;
+    background-color: blue;
+   }
+   #div4{
+    width: 100%;
+    height: 100px;
+    border: 4px solid green;
+    float: left;
+    background-color: green;
+   }
+   #div5{
+    width: 35.9%;
+    height: 100px;
+    border: 4px solid green;
+    float: right;
+    background-color: green;
+   }
+   #div6{
+    width: 100%;
+    height: 100px;
+    border: 4px solid green;
+    float: left;
+    background-color: green;
    }
 </style>
 <body>
-    
-    <div id="div1">
-        <div id="div2">
+    <div id="div4">
+    </div>
 
-        </div>
+    <div id="div2">
+    </div>
+
+    <div id="div3">
+    </div>
+
+    <div id="div1">
     </div>
     
+    <div id="div5">
+    </div>
+
+    <div id="div6">
+    </div>
+    
+    
+        <img id="imagen" src="tostada.jpg" alt="">
+        <img id="imagenFallo" src="OIP.jpg" alt="">
 
     <script>
-        let div2 = document.getElementById("div2");
+        document.getElementById("imagen").style.display = 'none';
+        document.getElementById("imagenFallo").style.display = 'none';
+
         let div1 = document.getElementById("div1");
-        div1.addEventListener("mousemove", (evento)=>{
-            //  evento.preventDefault();
-            console.log("fuera.");
-        });
+        let div2 = document.getElementById("div2");
+        let div3 = document.getElementById("div3");
+
+        let div4 = document.getElementById("div4");
+        let div5 = document.getElementById("div5");
+        let div6 = document.getElementById("div6");
+
+
+        
 
         div2.addEventListener("mousemove", (evento)=>{
             //evento.preventDefault();
-            console.log("dentro.");
+            console.log("Rojo.");
+            document.getElementById("imagen").style.display = ''; 
+            
             //evento.stopImmediatePropagation();
         });
+        div4.addEventListener("mousemove", (evento)=>{
+            //evento.preventDefault();
+            console.log("Rojo.");
+            document.getElementById("imagenFallo").style.display = ''; 
+            
+            //evento.stopImmediatePropagation();
+        });
+        div5.addEventListener("mousemove", (evento)=>{
+            //evento.preventDefault();
+            console.log("Rojo.");
+            document.getElementById("imagenFallo").style.display = ''; 
+            
+            //evento.stopImmediatePropagation();
+        });
+        div6.addEventListener("mousemove", (evento)=>{
+            //evento.preventDefault();
+            console.log("Rojo.");
+            document.getElementById("imagenFallo").style.display = ''; 
+            
+            //evento.stopImmediatePropagation();
+        });
+        
 
         
     </script>

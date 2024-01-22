@@ -20,14 +20,27 @@
         var imgX = Math.floor(domX * ratioX);
         var imgY = Math.floor(domY * ratioY);
         
-        /*
+        
             console.log("X");
             console.log(imgX);
             console.log("Y");
             console.log(imgY);
-        */
+        
         if ((imgX >= 1831  && imgX <= 1880) && (imgY >= 697  && imgY <= 766)) {
             alert("!Encontantes a wally");
+        }else if (
+            ((imgX < 1831  && imgX >= 1559) || (imgX > 1880  && imgX <= 2300)) 
+            && 
+            ((imgY >= 500  && imgY < 697) || (imgY > 766  && imgY <= 1500))
+        ){
+            alert("Caliente Caliente");
+        }else if (
+            ((imgX >= 1018  && imgX < 1559) || (imgX > 1980  && imgX <= 2500)) 
+           
+        ){
+            alert("Templado ");
+        }else{
+            alert("Frio frio")
         }
         };
     </script>
