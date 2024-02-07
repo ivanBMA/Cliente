@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        let url = 'http:///worldtimeapi.org/api/ip';
+        let gurl = 'https://http.dog/200.jpg';
+
+        async function llamar(direccion) {
+            respuesta = await fetch(direccion,{
+                    //method: 'POST',
+                    //headers: headers,
+                    mode: 'no-cors',
+                    //credentials: 'include'
+                });
+            //datos = await respuesta.json();
+            console.log(respuesta);
+        }
+        llamar(gurl);
+
+        
+
+
+
+    </script>
+</body>
+
+</html>

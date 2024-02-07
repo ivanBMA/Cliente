@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        text-align: center;
+    }
+
+    #central {
+        margin-top: 5%;
+        border: solid 4px black;
+        border-radius: 10px;
+        width: 90%;
+        float: left;
+    }
+
+    img {
+        margin-top: 5%;
+        float: left;
+        margin-left: 40%;
+        margin-bottom: 5%;
+    }
+
+    h1 {
+        float: left;
+        width: 100%;
+    }
+
+    a {
+        float: left;
+        width: 100%;
+    }
+</style>
+
+<body>
+
+    <form action="" method="get">
+        <label for="">Buscador</label>
+        <input type="text" name="" id="buscador">
+
+        <button onclick=buscar() type="button">buscar</button>
+        <button onclick=siguiente() type="button">siguiente</button>
+        <button onclick=atras() type="button">anterior</button>
+    </form>
+
+    <div id="central">
+        <h1 id="titulo">Titulo</h1>
+        <img id="img" src="../../img/walli.jpg" alt="" width="20%">
+        <a id="urlNoticia" href="">direccion</a>
+
+    </div>
+
+    <script>
+        /*
+            1- Explicar que es el cors, en particular indicar a que se refieren por origen en la documentacion 
+            oficial.
+
+            **
+                Es una característica de seguridad del navegador que restringe las solicitudes 
+                HTTP de origen cruzado que se inician desde secuencias de comandos que se 
+                ejecutan en el navegador.
+            **
+
+            ¿Qué quiere decir CORS?
+
+            **
+                Intercambio de Recursos de Origen Cruzado
+            **
+
+            2- Crear un pagina web compuesta de un formulario de entrada para buscar, dos botones para siguiente 
+            y anterior  un cuadro centrar para mostrar informacion.
+            La pagina mostrara el resultado de hacer una busqueda de titulo mediante una peticion ala API de noticias 
+            espaciales, sacara la primera noticia en el cuadro central y mediante los botones de anterior  y siguiente
+            debera permitir cambiar de noticia. De las noticias debe aparece:
+                - Titulo
+                - La imagen asociada
+                - URL a la noticia
+        */
+        let url = "https://api.spaceflightnewsapi.net/v4/articles/?title_contains=";
+        let titulo;
+        let imgUrl;
+        let direccion;
+        //let indice = 0;
+        //let vectorNoticias = [];
+        let numeroBusquedaS = 0;
+
+        async function buscar() {
+                 let numeroBusqueda = document.getElementById("buscador").value;
+                    direccion = url + numeroBusqueda;
+                    console.log(direccion);
+                    
+                    //vectorNoticias[++indice] = direccion;
+
+                    respuesta = await fetch(direccion);
+                    datos = await respuesta.json();
+                    titulo = datos.results[0].title;
+                    imgUrl = datos.results[0].image_url;
+                    document.getElementById("titulo").innerHTML = titulo;
+                    document.getElementById("img").setAttribute("src", imgUrl);
+                    document.getElementById("urlNoticia").textContent = direccion
+                    document.getElementById("urlNoticia").setAttribute("href", direccion);
+        }
+
+        async function siguiente() {
+                    
+                    direccion = url + numeroBusquedaS++;
+                    console.log(direccion);
+                    
+                    //vectorNoticias[++indice] = direccion;
+
+                    respuesta = await fetch(direccion);
+                    datos = await respuesta.json();
+                    titulo = datos.results[0].title;
+                    imgUrl = datos.results[0].image_url;
+                    document.getElementById("titulo").innerHTML = titulo;
+                    document.getElementById("img").setAttribute("src", imgUrl);
+                    document.getElementById("urlNoticia").textContent = direccion
+                    document.getElementById("urlNoticia").setAttribute("href", direccion);
+        }
+
+        async function atras() {
+                    direccion = url + numeroBusquedaS--;
+                    console.log(direccion);
+
+                    respuesta = await fetch(direccion);
+                    datos = await respuesta.json();
+                    titulo = datos.results[0].title;
+                    imgUrl = datos.results[0].image_url;
+                    document.getElementById("titulo").innerHTML = titulo;
+                    document.getElementById("img").setAttribute("src", imgUrl);
+                    document.getElementById("urlNoticia").textContent = direccion
+                    document.getElementById("urlNoticia").setAttribute("href", direccion);
+        }
+
+
+    </script>
+
+</body>
+
+</html>
