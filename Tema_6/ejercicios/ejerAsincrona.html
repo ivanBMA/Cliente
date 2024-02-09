@@ -7,18 +7,45 @@
     <title>Document</title>
 </head>
 <style>
-    ul{
+    ul {
         border: 2px solid black;
         font-size: 22px;
-        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; 
-        width: 400px;  
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        width: 400px;
+        float: left;
+        
     }
-    .españa{
-        border: 2px solid red;
+    #primerUl{
+        position: absolute;
+        top: 40px; left: 40px;
     }
+
+
+    #desplegable{
+        position: absolute;
+        top: 200px; left: 40px;
+    }
+    #desplegable>li{
+        float: left;
+        border: 3px solid blue;
+
+       margin-left: 10px;
+       font-size: 30px;
+       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+       width: 600px;
+       margin-top: 5px;
+    }
+    
 </style>
 
 <body>
+    <ul id="ul" class="primerUl">
+        <li id="1"></li>
+        <li id="2"></li>
+        <li id="3"></li>
+        <li id="4"></li>
+        <li id="5"></li>
+    </ul>
 
     <script>
         let indice = 0;
@@ -61,29 +88,73 @@
 
         function unificarHtml() {
 
-            var newUl = document.createElement('ul');
-            var newItem1 = document.createElement('li');
+            var newUl = document.getElementById('ul');
+            var newItem1 = document.getElementById('1');
             newItem1.textContent = resultados[0].nombre + " vale " + resultados[0].valor;
-            newItem1.setAttribute("onclick", "mostrarArray()");
+            $var1 = "mostrarArray('españa2')";
+            newItem1.setAttribute("onclick", $var1);
             
+
             var copia1 = newItem1.textContent;
+            
             console.log(copia1);
             if (vectorEspaña.length == 15) {
                 vectorEspaña.shift();
                 vectorEspaña.push(copia1);
-            }else{
+            } else {
                 vectorEspaña.push(copia1);
             }
 
-            
-            var newItem2 = document.createElement('li');
+
+            var newItem2 = document.getElementById('2');
             newItem2.textContent = resultados[1].nombre + " vale " + resultados[1].valor;
-            var newItem3 = document.createElement('li');
+            $var2 = "mostrarArray('holanda2')";
+            newItem2.setAttribute("onclick", $var2);
+            
+
+            var copia2 = newItem2.textContent;
+            console.log(copia2);
+            if (vectorHolanda.length == 15) {
+                vectorHolanda.shift();
+                vectorHolanda.push(copia2);
+            } else {
+                vectorHolanda.push(copia2);
+            }
+
+            var newItem3 = document.getElementById('3');
             newItem3.textContent = resultados[2].nombre + " vale " + resultados[2].valor;
-            var newItem4 = document.createElement('li');
+            $var3 = "mostrarArray('austria2')";
+            newItem3.setAttribute("onclick", $var3);
+            
+
+            var copia3 = newItem3.textContent;
+            console.log(copia3);
+            if (vectorAustria.length == 15) {
+                vectorAustria.shift();
+                vectorAustria.push(copia3);
+            } else {
+                vectorAustria.push(copia3);
+            }
+
+            var newItem4 = document.getElementById('4');
             newItem4.textContent = resultados[3].nombre + " vale " + resultados[3].valor;
-            var newItem5 = document.createElement('li');
+            $var4 = "mostrarArray('italia2')";
+            newItem4.setAttribute("onclick", $var4);
+            
+
+
+            var copia4 = newItem4.textContent;
+            console.log(copia4);
+            if (vectorItalia.length == 15) {
+                vectorItalia.shift();
+                vectorItalia.push(copia4);
+            } else {
+                vectorItalia.push(copia4);
+            }
+
+            var newItem5 = document.getElementById('5');
             newItem5.textContent = "El clima es " + clima;
+            
 
             newUl.appendChild(newItem1);//Le añado id
             newUl.appendChild(newItem2);
@@ -94,23 +165,61 @@
             var body = document.body;
             body.appendChild(newUl);
 
-            
+
         }
 
-        function mostrarArray() {
+        function mostrarArray($pais) {
             //array.shift(); borra el primer elemento
             //pila.push('a'); añade un elemento al final
             //pila.size(); te dice la longitud del vector
             //console.log("España de mostrar Array");
-            vectorEspaña.forEach(element => {
-                var newUl = document.createElement('ul');
-                newUl.textContent=element;
-                //newUl.appendChild(element);
-                newUl.setAttribute("class", "españa");
+            let vectorGeneral = [];
+            let vectorDom = [];
 
-                var body = document.body;
-                body.appendChild(newUl);
+
+            switch ($pais) {
+                case "españa2":
+                    vectorGeneral = vectorEspaña;
+                    break;
+                case "holanda2":
+                    vectorGeneral = vectorHolanda;
+                    break;
+                case "austria2":
+                    vectorGeneral = vectorAustria;
+                    break;
+                case "italia2":
+                    vectorGeneral = vectorItalia;
+                    break;
+            }
+
+            //Borrar del dom todos los elementos con la clase españa2
+            vectorDom = document.getElementsByClassName("borrar");
+            /*
+            for (let index = 0; index < vectorDom.length; index++) {
+                vectorDom[index].remove();
+            }
+            */
+
+            Array.from(vectorDom).forEach((element) => {
+                element.remove();
             });
+
+            var div = document.createElement('div');
+            div.setAttribute("id", "desplegable");
+            div.setAttribute("class", "borrar");
+
+
+            vectorGeneral.forEach(element => {
+
+                var newUl = document.createElement('li');
+
+                newUl.textContent = element;
+                newUl.setAttribute("class", $pais + " borrar");
+                //newUl.setAttribute("class", "borrar");
+                div.appendChild(newUl);
+            });
+            var body = document.body;
+            body.appendChild(div);
 
         }
 
@@ -128,16 +237,16 @@
                 .then(bolsa())
                 .then(unificarHtml());
         }
-        
+
 
         setInterval(() => {
             repetir();
         }, 2000);
-        
-        
-        
 
-        
+
+
+
+
 
 
 
