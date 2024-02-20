@@ -7,6 +7,9 @@
 		
 		<script>
 
+            //Document.getElementById("HpOpponent").textContent = ditto.hp;
+           
+
             // Prototipo de Pokémon
         function Pokemon(nombre, nivel, hp, ataque, defensa, ataqueESP, defensaESP, velocidad, movimientos, tipo1, tipo2) {
             this.nombre = nombre;
@@ -82,6 +85,8 @@
             "Volador"
         );
 
+           
+
             function Calculardaño(pokemonAtacante, movimientosAtacante, pokemonAtacado ){
                 //nivel,ataque, ataqqESP, defensa, defensaEsp tipo1, tipo2
                 //Potencia, categoria,
@@ -100,8 +105,10 @@
                 return daño;
             }
 
+            
 
             function ataqueMio(nombreAtaque){
+                alert(document.getElementById("HpOpponent").textContent);
                 //alert("Funciona");
                 switch (nombreAtaque) {
 
@@ -111,9 +118,12 @@
                         var daño = Calculardaño(pikachu, pikachu.movimientos[0], articuno);
 
                         if (vidaOponente - daño <= 0) {
+                           
                             console.log("enemigo muerto, daño realizado : " + daño);
                         }
                         else{
+                           
+                            document.getElementById("HpOpponent").textContent = ditto.hp - daño;
                             console.log("enemigo va a contraatacar, daño realizado : " + daño);
                         }
                         
@@ -134,7 +144,7 @@
             }
 
             var timer;
-
+            
             $(document).ready(function () {
             // Oculta los divs y su contenido al principio
             $("#infoBox, #actions").hide();
@@ -173,6 +183,9 @@
             }
 
 			$(document).ready(function () {
+                document.getElementById("HpOpponent").textContent = ditto.hp;
+                document.getElementById("mypokemonHp").textContent = pikachu.hp; 
+
             // Oculta elementos al principio
             $("#platform1, #platform2, #enemy, #mypokemon").hide();
 
@@ -406,6 +419,7 @@
             .BarraVida{
                 border: 2px solid black;
                 width: 50%;
+                font-size: 30px;
             }
 
             #HpOpponent{
