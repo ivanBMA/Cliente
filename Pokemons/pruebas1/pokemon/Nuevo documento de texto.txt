@@ -1,0 +1,75 @@
+rpgmaker--mirar a ver
+
+
+
+
+
+
+Hacer: prototipo pokemon
+	instancias de cada pokemon (Atributos de los pokemones que al menos deberán estar programados: en el enunciado)
+	añadir ataque especial y defensa especial, y calcular el daño teniendolos en cuenta
+	añadir velocidad- y moficicar de manera acorde el orden de los turnos
+	incluir metodos que se consideren necesarios
+
+	prototipo movimiento
+		atributs Potencia, Precisión, PP, Objetivo, Tipo y 
+		 Categoría (podrá ser una entre Físico, Especial y Estatus, no hay otra posibilidad y 
+		deberá verse reflejado en el código)
+		mirar bien enunciado
+	pokeball
+	
+
+
+
+
+prototipo movimiento: 
+
+
+
+
+Mejoras elegidas:
+		1ª Añadir los atributos ataque y defensa especial a los atributos de los pokemón y calcular el 
+		daño de acuerdo a la categoría del movimiento.
+		2ª Añadir velocidad a los pokemones y calcular el orden del combate de manera apropiada 
+		(más rápido en cada ronda actúa primero).
+
+
+
+
+
+
+
+luchar		aparecerá en el cuadro de texto un menú de opciones compuesto 
+		por los movimientos disponibles (4 divs también, independientemente de si tiene 4 
+		movimientos) ejecutándose en la secuencia de combate aquel que seleccione (solo se 
+		pueden seleccionar aquellos que tienen PP no nulos y sobrevive).
+
+	
+
+
+mochila		
+
+
+			si hay items-mostrarlos(pokebolas)- si pulsas en pokebola la lanza para intentar capturar
+			si no hay items: mostratr en el div 1 mensaje indicando: “The bag is empty!”, y el usuario deberá elegir otra acción.
+
+
+pokemos			mirar bien enunciado
+
+
+
+huir			se intenta huir(20% posibilidad de conseguirlo)- si huye, o saldrá la pantalla final (similar que la de título pero con el mensaje: “You run…”).
+			En caso de fallar, el pokemón del jugador pierde el turno y Articuno atacará 
+
+
+
+
+
+dano= (2xlvl/5)+2 y el resultado de esto x Potencia(atributodelMovimiento) x Ataque(del atacante) / defensa(del defensor) , y el resultado de todo esto * bonificadores de tipo, y resultado x num aleatorio(elegido entre 217 y 255 incluidos, y el resultado entre 255)
+
+Bonificadores de tipo =  es un multiplicador que se aplica en caso de que el pokemón 
+tenga en uno de sus 2 tipos el mismo tipo que el del movimiento (1,5) y sino toma el valor 1.
+Tipo1 depende del tipo primario (primer tipo) del pokemón objetivo (0,5,1 ó 2) y se calcula en 
+función de las debilidades (buscar en internet).
+Tipo2 es 1 en caso de que el pokemón objetivo no tenga tipo secundario y sino depende del 
+tipo secundario (primer tipo) del pokemon objetivo (0,5,1 ó 2).

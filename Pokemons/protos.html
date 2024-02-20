@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+       
+       // Prototipo de Pokémon
+        function Pokemon(nombre, nivel, hp, ataque, defensa, ataqueESP, defensaESP, velocidad, movimientos, tipo1, tipo2) {
+            this.nombre = nombre;
+            this.nivel = nivel;
+            this.hp = hp;
+            this.ataque = ataque;
+            this.defensa = defensa;
+            this.velocidad = velocidad;
+            this.movimientos = movimientos || [];
+            this.tipo1 = tipo1;
+            this.tipo2 = tipo2 || null;
+        }
+
+        // Prototipo de Movimiento
+        function Movimiento(nombre, potencia, precision, pp, objetivo, tipo, categoria) {
+            this.nombre = nombre;
+            this.potencia = potencia;
+            this.precision = precision;
+            this.pp = pp;
+            this.objetivo = objetivo;
+            this.tipo = tipo;
+            this.categoria = categoria; // Puede ser "Físico", "Especial" o "Estatus"
+        }
+
+        // Instancias de Pikachu, Ditto y Articuno con los atributos proporcionados
+        var pikachu = new Pokemon(
+            "Pikachu",
+            50,
+            142,
+            100,
+            83,
+            138,
+            94,
+            94,
+            [
+                new Movimiento("Thunderbolt", 90, 100, 15, "Objetivo único", "Eléctrico", "Especial"),
+                new Movimiento("Thunder Wave ", 90, 100, 20, "Objetivo único", "Eléctrico", "Estatus"),
+                new Movimiento("Agility", 90, 100, 10, "Self", "Normal", "Estatus")
+            ],
+            "Eléctrico"
+        );
+
+        var ditto = new Pokemon(
+            "Ditto",
+            50,
+            155,
+            61,
+            110,
+            110,
+            61,
+            110,
+            [
+                new Movimiento("Transformación", 0, 100, 10, "Objetivo único", "Normal", "Estatus"),
+            ],
+            "Normal"
+        );
+
+        var articuno = new Pokemon(
+            "Articuno",
+            50,
+            181,
+            121,
+            136,
+            121,
+            131,
+            161,
+            [
+                new Movimiento("Ice Beam", 95, 100, 10, "Objetivo único", "Hielo", "Especial"),
+                new Movimiento("Agility", 90, 100, 10, "Self", "Normal", "Estatus"),
+                new Movimiento("Swift", 60, 100, 20, "SObjetivo único", "Normal", "Especial")
+            ],
+            "Hielo",
+            "Volador"
+        );
+
+
+
+
+
+      
+
+
+
+
+            
+
+
+
+
+
+        
+
+
+    </script>
+    
+</body>
+</html>

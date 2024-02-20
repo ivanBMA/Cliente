@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokemon Fight - Pantalla de Inicio</title>
+    <style>
+        body {
+            background-image: url('img/iniciopng.png'); /* Ruta de la imagen de pantalla de comienzo */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            cursor: pointer; /* Añade un cursor de puntero al body para indicar que es interactivo */
+        }
+
+        
+        /* Estilo para el texto superpuesto */
+        .texto-superpuesto {
+            position: absolute;
+            top: 90%; /* Ajusta la posición vertical según tus necesidades */
+            left: 50%; /* Ajusta la posición horizontal según tus necesidades */
+            transform: translate(-50%, -50%);
+            color: #333; /* Color de texto oscuro para contrastar con el fondo */
+            background-color: rgba(255, 255, 255, 0.7); /* Fondo semitransparente blanco */
+            padding: 15px; /* Añade espacio alrededor del texto */
+            border-radius: 5px; /* Bordes redondeados para el fondo del texto */
+            font-size: 24px; /* Ajusta el tamaño de fuente según tus necesidades */
+            font-weight: bold; /* Otras propiedades de estilo según tus necesidades */
+        }
+    </style>
+</head>
+<body onclick="iniciarCombate()">
+    <!-- al hacer click en el body se ejecutara la funcion iniciarCombate -->
+
+    <div class="texto-superpuesto">Haz click para iniciar el combate</div>
+
+    <script>
+        function iniciarCombate() {
+            // Aquí puedes agregar lógica para preparar el combate
+            console.log("Combate iniciado");
+
+            // Redirecciona a la pantalla de combate (puedes cambiar la URL según tu estructura)
+            window.location.href = "pokemon.html";
+        }
+    </script>
+</body>
+</html>
