@@ -23,6 +23,8 @@
             this.tipo2 = tipo2 || null;
         }
 
+        
+
         // Prototipo de Movimiento
         function Movimiento(nombre, potencia, precision, pp, objetivo, tipo, categoria) {
             this.nombre = nombre;
@@ -108,7 +110,7 @@
             
 
             function ataqueMio(nombreAtaque){
-                alert(document.getElementById("HpOpponent").textContent);
+                
                 //alert("Funciona");
                 switch (nombreAtaque) {
 
@@ -123,21 +125,63 @@
                         }
                         else{
                            
-                            document.getElementById("HpOpponent").textContent = ditto.hp - daño;
+                            var vidaRestante = ditto.hp - daño;
+                            ditto.hp = vidaRestante;
+                            document.getElementById("HpOpponent").textContent = ditto.hp;
                             console.log("enemigo va a contraatacar, daño realizado : " + daño);
                         }
                         
                         break;
 
                     case "Thunderwave":
+                        var vidaOponente = document.getElementById('HpOpponent').textContent;
+                        var daño = Calculardaño(pikachu, pikachu.movimientos[1], articuno);
+
+                        if (vidaOponente - daño <= 0) {
+                           
+                            console.log("enemigo muerto, daño realizado : " + daño);
+                        }
+                        else{
+                           
+                            var vidaRestante = ditto.hp - daño;
+                            ditto.hp = vidaRestante;
+                            document.getElementById("HpOpponent").textContent = ditto.hp;
+                            console.log("enemigo va a contraatacar, daño realizado : " + daño);
+                        }
                         break;
 
                     case "Agility":
-                        
+                        var vidaOponente = document.getElementById('HpOpponent').textContent;
+                        var daño = Calculardaño(pikachu, pikachu.movimientos[2], articuno);
+
+                        if (vidaOponente - daño <= 0) {
+                           
+                            console.log("enemigo muerto, daño realizado : " + daño);
+                        }
+                        else{
+                           
+                            var vidaRestante = ditto.hp - daño;
+                            ditto.hp = vidaRestante;
+                            document.getElementById("HpOpponent").textContent = ditto.hp;
+                            console.log("enemigo va a contraatacar, daño realizado : " + daño);
+                        }
                         break;
 
                     case "Tackle":
-                        
+                    var vidaOponente = document.getElementById('HpOpponent').textContent;
+                        var daño = Calculardaño(pikachu, pikachu.movimientos[3], articuno);
+
+                        if (vidaOponente - daño <= 0) {
+                           
+                            console.log("enemigo muerto, daño realizado : " + daño);
+                        }
+                        else{
+                           
+                            var vidaRestante = ditto.hp - daño;
+                            ditto.hp = vidaRestante;
+                            document.getElementById("HpOpponent").textContent = ditto.hp;
+                            console.log("enemigo va a contraatacar, daño realizado : " + daño);
+                        }
                         break;  
                     
                 }
@@ -183,8 +227,15 @@
             }
 
 			$(document).ready(function () {
+                /*
+                alert(ditto.getPrototypeOf(hp));
+                document.getElementById("HpOpponent").textContent = ditto.getPrototypeOf(hp);
+                document.getElementById("mypokemonHp").textContent = pikachu.getPrototypeOf(hp);
+                -> */
                 document.getElementById("HpOpponent").textContent = ditto.hp;
                 document.getElementById("mypokemonHp").textContent = pikachu.hp; 
+               
+
 
             // Oculta elementos al principio
             $("#platform1, #platform2, #enemy, #mypokemon").hide();
