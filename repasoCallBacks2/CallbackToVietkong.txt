@@ -1,0 +1,65 @@
+     
+
+function toggleGreenDiv() {
+    var greenDivs = document.getElementsByClassName("green-div");
+
+    for (var i = 0; i < greenDivs.length; i++) {
+        var currentDisplay = window.getComputedStyle(greenDivs[i]).getPropertyValue("display");
+
+        if (currentDisplay === "none" || currentDisplay === "") {
+            greenDivs[i].style.display = "block";
+        } else {
+            greenDivs[i].style.display = "none";
+        }
+    }
+}
+function toggleRedDiv() {
+    var redDivs = document.getElementsByClassName("red-div");
+
+    for (var i = 0; i < redDivs.length; i++) {
+        var currentDisplay = window.getComputedStyle(redDivs[i]).getPropertyValue("display");
+
+        if (currentDisplay === "none" || currentDisplay === "") {
+            redDivs[i].style.display = "block";
+        } else {
+            redDivs[i].style.display = "none";
+        }
+    }
+}
+
+
+function toggleBlueDivAfterDelay() {
+    var blueDiv = document.querySelector(".blue-div");
+    
+    if (blueDiv) {
+        setTimeout(function () {
+            var currentDisplay = window.getComputedStyle(blueDiv).getPropertyValue("display");
+
+            if (currentDisplay === "none" || currentDisplay === "") {
+                blueDiv.style.display = "block";
+            } else {
+                blueDiv.style.display = "none";
+            }
+		setTimeout(function () {
+			var redDiv = document.querySelector(".red-div");
+    
+			 if (redDiv) {
+        			redDiv.click();
+    			 }
+
+			setTimeOut(toggleGreenDiv, 2000);
+
+		},3000);
+        }, 5000); 
+    }
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    var redDiv = document.querySelector(".red-div");
+    
+    if (redDiv) {
+        redDiv.addEventListener("click", toggleRedDiv);
+    }
+});

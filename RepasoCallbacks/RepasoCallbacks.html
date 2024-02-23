@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table Example with Color Change</title>
+  <style>
+    .even-row-blue {
+      background-color: blue;
+      color: white;
+    }
+
+    .even-row-yellow {
+      background-color: yellow;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <table border="1" id="myTable">
+    <thead>
+      <tr>
+        <th>Column 1</th>
+        <th>Column 2</th>
+        <th>Column 3</th>
+        <th>Column 4</th>
+        <th>Column 5</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Row 1, Cell 1</td>
+        <td>Row 1, Cell 2</td>
+        <td>Row 1, Cell 3</td>
+        <td>Row 1, Cell 4</td>
+        <td id="randomCell">Row 1, Cell 5</td>
+      </tr>
+      <tr>
+        <td>Row 2, Cell 1</td>
+        <td>Row 2, Cell 2</td>
+        <td>Row 2, Cell 3</td>
+        <td>Row 2, Cell 4</td>
+        <td>Row 2, Cell 5</td>
+      </tr>
+      <tr>
+        <td>Row 3, Cell 1</td>
+        <td>Row 3, Cell 2</td>
+        <td>Row 3, Cell 3</td>
+        <td>Row 3, Cell 4</td>
+        <td>Row 3, Cell 5</td>
+      </tr>
+      <tr>
+        <td>Row 4, Cell 1</td>
+        <td>Row 4, Cell 2</td>
+        <td>Row 4, Cell 3</td>
+        <td>Row 4, Cell 4</td>
+        <td>Row 4, Cell 5</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    function changeRandomCellValue() {
+      var randomValue = Math.floor(Math.random() * 10) + 1;
+      document.getElementById("randomCell").textContent = "Random Value: " + randomValue;
+      alert("changeRandomCellValue");
+
+    }
+
+    function changeColor() {
+      var tableRows = document.getElementById("myTable").getElementsByTagName("tr");
+
+      for (var i = 0; i < tableRows.length; i++) {
+        if (i % 2 === 1) { // Check if the row index is even
+          if (tableRows[i].classList.contains("even-row-blue")) {
+            tableRows[i].classList.remove("even-row-blue");
+            tableRows[i].classList.add("even-row-yellow");
+          } else {
+            tableRows[i].classList.remove("even-row-yellow");
+            tableRows[i].classList.add("even-row-blue");
+          }
+        }
+      }
+
+      setTimeout(function() {
+        stopColorChange(function() {
+          restartColorChange(function() {
+            changeColor(); // Call changeColor again after 5 seconds
+          });
+        });
+      alert("changeColor");
+
+      }, 5000);
+    }
+
+    function stopColorChange(callback) {
+      setTimeout(function () {
+        callback(function() {
+          changeRandomCellValue();
+        });
+      alert("stopColorChange");
+
+      }, 10000);
+    }
+
+    function restartColorChange(callback) {
+      callback();
+      setTimeout(function() {
+        restartColorChange(function() {
+          callback();
+        });
+      alert("restartColorChange");
+
+      }, 30000);
+    }
+
+    setTimeout(function() {
+      restartColorChange(function() {
+        changeColor();
+      });
+      alert("el primero");
+    }, 5000); // Initial delay to start the color change after 5 seconds
+  </script>
+
+</body>
+</html>
