@@ -10,9 +10,50 @@
 
         //Document.getElementById("HpOpponent").textContent = ditto.hp;
 
+        let pokeballsDisponibles = 2;
+
+        function name() {
+            alert("Lanza pokeballs " + articuno.hpMaxima);
+        }
+
+        // Prototipo de Pokeball
+        function Pokeball() {
+            // Método para intentar la captura
+            this.intentarCaptura = function (pokemon) {
+                // Verifica si hay Pokeballs disponibles
+                if (pokeballsDisponibles > 0) {
+                    // Calcula la probabilidad de captura
+                    alert("aqui");
+                    let f = (pokemon.hpActual / pokemon.hpMaxima) * 255 / 3;
+
+                    // Genera un número aleatorio entre 0 y 255
+                    let numeroAleatorio = Math.floor(Math.random() * 256);
+
+                    // Compara el número aleatorio con la probabilidad de captura
+                    if (numeroAleatorio > f) {
+                        console.log(`Captura exitosa! Has capturado a ${pokemon.nombre}.`);
+                        pokeballsDisponibles--;  // Decrementa el número de Pokeballs disponibles
+                        alert(`Pokeballs restantes: ${pokeballsDisponibles}`);
+                        document.getElementById("pokebola").textContent = "Pokeballs :" + pokeballsDisponibles;
+                        //si ganas salta pantalla de inicio con el texto has ganado ->
+                        return true;  // Captura exitosa
+                    } else {
+                        console.log(`La captura ha fallado. ${pokemon.nombre} ha escapado.`);
+                        pokeballsDisponibles--;  // Decrementa el número de Pokeballs disponibles
+                        alert(`Pokeballs restantes: ${pokeballsDisponibles}`);
+                        document.getElementById("pokebola").textContent = "Pokeballs :" + pokeballsDisponibles;
+                        ataqueEnemigo();
+                        return false;  // Captura fallida
+                    }
+                } else {
+                    console.log("No te quedan Pokeballs disponibles.");
+                    return false;  // No hay Pokeballs disponibles
+                }
+            };
+        }
 
         // Prototipo de Pokémon
-        function Pokemon(nombre, nivel, hp, ataque, defensa, ataqueESP, defensaESP, velocidad, movimientos, tipo1, tipo2) {
+        function Pokemon(nombre, nivel, hp, ataque, defensa, ataqueESP, defensaESP, velocidad,hpMaxima, movimientos, tipo1,  tipo2) {
             this.nombre = nombre;
             this.nivel = nivel;
             this.hp = hp;
@@ -20,8 +61,10 @@
             this.defensa = defensa;
             this.velocidad = velocidad;
             this.movimientos = movimientos || [];
+            this.hpMaxima = hpMaxima ;
             this.tipo1 = tipo1;
             this.tipo2 = tipo2 || null;
+
 
             // Getter para obtener el nombre completo del Pokémon
             this.getHp = function () {
@@ -49,6 +92,7 @@
         }
 
         // Instancias de Pikachu, Ditto y Articuno con los atributos proporcionados
+        const miPokeball = new Pokeball();
         var pikachu = new Pokemon(
             "Pikachu",
             50,
@@ -61,7 +105,9 @@
             [
                 new Movimiento("Thunderbolt", 90, 100, 15, "Objetivo único", "Eléctrico", "Especial"),
                 new Movimiento("Thunder Wave ", 90, 100, 20, "Objetivo único", "Eléctrico", "Estatus"),
-                new Movimiento("Agility", 90, 100, 10, "Self", "Normal", "Estatus")
+                new Movimiento("Agility", 90, 100, 10, "Self", "Normal", "Estatus"),
+                new Movimiento("Tackle", 35, 95, 35, "Objetivo único", "Normal", "Fisico")
+
             ],
             "Eléctrico",
 
@@ -92,6 +138,7 @@
             121,
             131,
             161,
+            181,
             [
                 new Movimiento("Ice Beam", 95, 100, 10, "Objetivo único", "Hielo", "Especial"),
                 new Movimiento("Agility", 90, 100, 10, "Self", "Normal", "Estatus"),
@@ -137,7 +184,7 @@
 
                 if (objeto.nombre == "Articuno") {
                     guardarVida(objeto, "HpOpponent")
-                }else{
+                } else {
                     guardarVida(objeto, "mypokemonHp")
                 }
             }
@@ -156,7 +203,7 @@
 
                     resolucionAtaque(vidaOponente, daño, articuno);
 
-                    setTimeout(()=> {
+                    setTimeout(() => {
                         ataqueEnemigo();
                     }, 2000);
 
@@ -166,7 +213,7 @@
                     var daño = Calculardaño(pikachu, pikachu.movimientos[1], articuno);
 
                     resolucionAtaque(vidaOponente, daño, articuno);
-                    setTimeout(()=> {
+                    setTimeout(() => {
                         ataqueEnemigo();
                     }, 2000);
                     break;
@@ -175,7 +222,7 @@
                     var daño = Calculardaño(pikachu, pikachu.movimientos[2], articuno);
 
                     resolucionAtaque(vidaOponente, daño, articuno);
-                    setTimeout(()=> {
+                    setTimeout(() => {
                         ataqueEnemigo();
                     }, 2000);
 
@@ -185,7 +232,7 @@
                     var daño = Calculardaño(pikachu, pikachu.movimientos[3], articuno);
 
                     resolucionAtaque(vidaOponente, daño, articuno);
-                    setTimeout(()=> {
+                    setTimeout(() => {
                         ataqueEnemigo();
                     }, 2000);
 
@@ -231,9 +278,9 @@
         function run() {
             var probabilidad = Math.floor(Math.random() * (100 - 0) + 0);
             alert(probabilidad);
-            if (probabilidad <= 20){
+            if (probabilidad <= 20) {
                 alert("“You run…");
-            }else{
+            } else {
                 alert("Pierde el turno y Articuno atacará.");
                 ataqueEnemigo();
             }
@@ -286,6 +333,7 @@
             -> */
             document.getElementById("HpOpponent").textContent = articuno.nombre + " (HP-" + articuno.getHp() + ") (Lv-" + articuno.nivel + ")";
             document.getElementById("mypokemonHp").textContent = pikachu.nombre + " (HP-" + pikachu.getHp() + ") (Lv-" + pikachu.nivel + ")";
+            document.getElementById("pokebola").textContent = "Pokeballs :" + pokeballsDisponibles;
 
 
 
@@ -317,12 +365,35 @@
             $("#selector1").on("click", function () {
                 console.log("click");
                 $("#mainBox").hide();
+                $("#mochila").hide();
+                $("#pokemons").hide();
                 $("#attacks").css("display", "flex");
                 $(".triangle").hide();
                 $("#triangle1").show();
             })
 
-           
+            //Este codgo hace que al clickar en bag, hace que se oculte mainBox(whatshould pika do), y se muestren las pokebolas
+            $("#selector2").on("click", function () {
+                console.log("click");
+                $("#mainBox").hide();
+                $("#attacks").hide();
+                $("#pokemons").hide();
+                $("#mochila").css("display", "flex");
+                $(".triangle").hide();
+                $("#triangle1").show();
+            })
+
+            //Este codgo hace que al clickar en Selecion Pokemos, hace que se oculte mainBox(whatshould pika do), y se muestren los pokemons
+            $("#selector3").on("click", function () {
+                console.log("click");
+                $("#attacks").hide();
+                $("#mochila").hide();
+                $("#pokemons").css("display", "flex");
+                $(".triangle").hide();
+                $("#triangle1").show();
+            })
+
+
         });
 
     </script>
@@ -421,6 +492,22 @@
         }
 
         #attacks {
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+            top: 20px;
+            display: none;
+        }
+
+        #mochila {
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+            top: 20px;
+            display: none;
+        }
+
+        #pokemons {
             display: flex;
             flex-wrap: wrap;
             position: relative;
@@ -576,6 +663,28 @@
                 <div id="triangleDiv"><img src="img/Right_triangle.png" class="triangle" id="triangle3" /></div>
                 <div id="triangleDiv"><img src="img/Right_triangle.png" class="triangle" id="triangle4" /></div>
             </div>
+
+            <div id="mochila">
+                <div class="attackBox" onclick="miPokeball.intentarCaptura(articuno)">
+                    <h1 id="pokebola" class="actionText" >Pokeball</h1>
+                </div>
+
+                <div id="triangleDiv"><img src="img/Right_triangle.png" class="triangle" id="triangle1" /></div>
+            </div>
+
+            <div id="pokemons">
+                <div class="attackBox" >
+                    <h1 id="pokebola" class="actionText" >Piachu</h1>
+                </div>
+                <div class="attackBox" >
+                    <h1 id="pokebola" class="actionText" >Ditto</h1>
+                </div>
+
+                <div id="triangleDiv"><img src="img/Right_triangle.png" class="triangle" id="triangle1" /></div>
+                <div id="triangleDiv"><img src="img/Right_triangle.png" class="triangle" id="triangle2" /></div>
+
+            </div>
+
         </div>
         <div class="close" id="actions">
             <div class="actionBox" id="fightButton">
@@ -587,10 +696,10 @@
             <div class="actionBox">
                 <h1 class="actionText">POKEMON</h1>
             </div>
-            <div class="actionBox" >
-                <h1 class="actionText" >RUN</h1>
+            <div class="actionBox">
+                <h1 class="actionText">RUN</h1>
             </div>
-
+            
             <div class="selector" id="selector1"></div>
             <div class="selector" id="selector2"></div>
             <div class="selector" id="selector3"></div>
