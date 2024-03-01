@@ -11,6 +11,7 @@
         //Document.getElementById("HpOpponent").textContent = ditto.hp;
 
         let pokeballsDisponibles = 2;
+        let pokemonActual = "Picachu";
 
         function name() {
             alert("Lanza pokeballs " + articuno.hpMaxima);
@@ -186,7 +187,11 @@
 
                 if (objeto.nombre == "Articuno") {
                     guardarVida(objeto, "HpOpponent")
-                } else {
+                }
+                else if (objeto.nombre == "Ditto") {
+                    guardarVida(objeto, "mypokemonHp")
+                }
+                else {
                     guardarVida(objeto, "mypokemonHp")
                 }
             }
@@ -248,30 +253,39 @@
             var nombreAtaque = Math.floor(Math.random() * (4 - 1) + 1);
             alert("articuno ataca !!! con " + articuno.movimientos[nombreAtaque].nombre);
             //alert("Funciona");
+            pokemonActual
+            var objectoPokemon;
+            
+            if (pokemonActual == "Picachu") {
+                objectoPokemon = pikachu;
+            }else{
+                objectoPokemon = ditto;
+            }
+
             switch (nombreAtaque) {
 
                 case 1:
-                    var daño = Calculardaño(articuno, articuno.movimientos[0], pikachu);
+                    var daño = Calculardaño(articuno, articuno.movimientos[0], objectoPokemon);
 
-                    resolucionAtaque(vidaOponente, daño, pikachu)
+                    resolucionAtaque(vidaOponente, daño, objectoPokemon)
                     break;
 
                 case 2:
-                    var daño = Calculardaño(articuno, articuno.movimientos[1], pikachu);
+                    var daño = Calculardaño(articuno, articuno.movimientos[1], objectoPokemon);
 
-                    resolucionAtaque(vidaOponente, daño, pikachu)
+                    resolucionAtaque(vidaOponente, daño, objectoPokemon)
                     break;
 
                 case 3:
-                    var daño = Calculardaño(articuno, articuno.movimientos[2], pikachu);
+                    var daño = Calculardaño(articuno, articuno.movimientos[2], objectoPokemon);
 
-                    resolucionAtaque(vidaOponente, daño, pikachu)
+                    resolucionAtaque(vidaOponente, daño, objectoPokemon)
                     break;
 
                 case 4:
-                    var daño = Calculardaño(articuno, articuno.movimientos[3], pikachu);
+                    var daño = Calculardaño(articuno, articuno.movimientos[3], objectoPokemon);
 
-                    resolucionAtaque(vidaOponente, daño, pikachu)
+                    resolucionAtaque(vidaOponente, daño, objectoPokemon)
                     break;
 
             }
@@ -285,6 +299,20 @@
             } else {
                 alert("Pierde el turno y Articuno atacará.");
                 ataqueEnemigo();
+            }
+        }
+
+        //->
+        function seleccionarPersonaje(nombrePokemon) {
+            alert(nombrePokemon);
+            pokemonActual = nombrePokemon;
+
+            if (nombrePokemon == "Ditto") {
+                document.getElementById("mypokemon").setAttribute("src", "img/ditto.png");
+                document.getElementById("mypokemonHp").textContent = ditto.nombre + " (HP-" + ditto.getHp() + ") (Lv-" + ditto.nivel + ")";
+            }else{
+                document.getElementById("mypokemon").setAttribute("src", "img/pikachu.png");
+                document.getElementById("mypokemonHp").textContent = pikachu.nombre + " (HP-" + pikachu.getHp() + ") (Lv-" + pikachu.nivel + ")";
             }
         }
 
@@ -388,6 +416,7 @@
             //Este codgo hace que al clickar en Selecion Pokemos, hace que se oculte mainBox(whatshould pika do), y se muestren los pokemons
             $("#selector3").on("click", function () {
                 console.log("click");
+                $("#mainBox").hide();
                 $("#attacks").hide();
                 $("#mochila").hide();
                 $("#pokemons").css("display", "flex");
@@ -676,10 +705,10 @@
 
             <div id="pokemons">
                 <div class="attackBox" >
-                    <h1 id="pokebola" class="actionText" >Piachu</h1>
+                    <h1 id="pokebola" class="actionText" onclick="seleccionarPersonaje('Picachu')">Picachu</h1>
                 </div>
                 <div class="attackBox" >
-                    <h1 id="pokebola" class="actionText" >Ditto</h1>
+                    <h1 id="pokebola" class="actionText" onclick="seleccionarPersonaje('Ditto')">Ditto</h1>
                 </div>
 
                 <div id="triangleDiv"><img src="img/Right_triangle.png" class="triangle" id="triangle1" /></div>
