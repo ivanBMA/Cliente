@@ -11,7 +11,7 @@
         //Document.getElementById("HpOpponent").textContent = ditto.hp;
 
         let pokeballsDisponibles = 2;
-        let pokemonActual = "Picachu";
+        let pokemonActual = "Pikachu";
 
         function name() {
             alert("Lanza pokeballs " + articuno.hpMaxima);
@@ -155,7 +155,6 @@
             "Volador"
         );
 
-
         function debilidades1(pokemonAtacado, pokemonAtacante, movimiento) {
             // Si Pikachu es el Pokémon atacado
             if (pokemonAtacado.nombre == "Pikachu") {
@@ -189,24 +188,17 @@
         }
 
 
-        function Calculardaño(pokemonAtacante, movimientosAtacante, pokemonAtacado) {
-            //nivel,ataque, ataqqESP, defensa, defensaEsp tipo1, tipo2
-            //Potencia, categoria,
-            var tipo1 = debilidades1(pokemonAtacado, pokemonAtacante, movimientosAtacante);
-            var tipo2 = debilidades1(pokemonAtacado, pokemonAtacante, movimientosAtacante);
-            var rnd = (Math.floor(Math.random() * 255) + 217) / 255;
-            var daño = ((2 * pokemonAtacante.nivel) / 5) + 2;
-            var A;
-            var D;
-            
-            if (movimientosAtacante.categoria == "Especial") {
-                A = pokemonAtacante.ataqueESP;
-                D = pokemonAtacado.defensaESP;
-            }else{
-                A = pokemonAtacante.ataque;
-                D = pokemonAtacado.defensa;
+/*
+        function Calculardaño(pokemonAtacante, pokemonAtacado , movimientosAtacante,) {
+            console.log("pokemonAtacante:", pokemonAtacante);
+            console.log("movimientosAtacante:", movimientosAtacante);
+            console.log("pokemonAtacado:", pokemonAtacado);
 
-            }
+            
+
+
+            var stab = 1;
+            var rnd = (Math.floor(Math.random() * 255) + 217) / 255;
 
             // Verificar si el movimiento es del mismo tipo que alguno de los tipos del atacante
             if (pokemonAtacante.tipo1 === movimientosAtacante.tipo || pokemonAtacante.tipo2 === movimientosAtacante.tipo) {
@@ -214,14 +206,81 @@
             } else {
                 stab = 1;
             }
-            
-            console.log("a " + A + "D" + D + " tipo1" + tipo1 + "tipò2" + tipo2 + "rnd" + rnd + "daño" + daño);
-            daño = (daño * (movimientosAtacante.potencia * A)) /D  * stab * tipo1 * tipo2 * rnd;
 
-            daño = Math.floor(daño);
+            // Obtener el ataque y la defensa adecuados según la categoría del movimiento
+            var ataqueAtacante, defensaAtacado;
             
-            return daño;
+            if (movimientosAtacante.categoria === "Especial") {
+                ataqueAtacante = pokemonAtacante.ataqueESP;
+                defensaAtacado = pokemonAtacado.defensaESP;
+                console.log("movimiento especial");
+            } else {
+                ataqueAtacante = pokemonAtacante.ataque;
+                defensaAtacado = pokemonAtacado.defensa;
+                console.log("movimiento normal");
+            }
+
+            console.log("ataqueAtacante:", ataqueAtacante);
+            console.log("defensaAtacado:", defensaAtacado);
+
+            // Verificar si el movimiento tiene potencia 0 (movimiento de estado)
+            if (movimientosAtacante.potencia === 0) {
+                // Movimiento de estado, no causa daño
+                daño = 0;
+            } else {
+                // Calcular el factor de debilidad usando la función debilidades1
+                var factorDebilidad = debilidades1(pokemonAtacado, pokemonAtacante, movimientosAtacante);
+
+                // Calcular el daño total antes de aplicar el factor de debilidad
+                var dañoTotal = ((2 * pokemonAtacante.nivel) / 5) + 2;
+                dañoTotal = (dañoTotal * (movimientosAtacante.potencia * ataqueAtacante) / defensaAtacado) * stab * rnd;
+
+                // Aplicar el factor de debilidad al daño total
+                var daño = dañoTotal * factorDebilidad;
+
+                console.log("mov.potencia" + movimientosAtacante.potencia);
+                console.log("ataqueacante" + ataqueAtacante);
+                console.log("defAtacado" + defensaAtacado);
+
+                console.log("dañoTotal:", dañoTotal);
+                console.log("factorDebilidad:", factorDebilidad);
+                console.log("daño:", daño);
+                
+                // Redondear el daño y devolverlo
+                daño = parseFloat(daño.toFixed(2)); // Redondear a 2 decimales
+                return daño;
+            }
         }
+*/
+            function Calculardaño(pokemonAtacado, pokemonAtacante, movimiento) {
+                // Obtener el factor de debilidad
+                let factorDebilidad = debilidades1(pokemonAtacado, pokemonAtacante, movimiento);
+
+                // Otros parámetros necesarios para el cálculo
+                let nivelAtacante = pokemonAtacante.nivel;
+                let ataqueAtacante = pokemonAtacante.ataque;
+                let defensaAtacado = pokemonAtacado.defensa;
+                let potenciaMovimiento = movimiento.potencia;
+                let stab = (movimiento.tipo === pokemonAtacante.tipo1 || movimiento.tipo === pokemonAtacante.tipo2) ? 1.5 : 1;
+                let rnd = Math.random() * (255 - 217 + 1) + 217;
+                rnd /= 255;
+
+                // Fórmula de cálculo de daño
+                let daño = Math.floor(
+                    (((2 * nivelAtacante + 10) / 250) *
+                        (ataqueAtacante / defensaAtacado) *
+                        potenciaMovimiento +
+                        2) *
+                    factorDebilidad *
+                    stab *
+                    rnd
+                );
+
+                return daño;
+            }
+
+
+
 
         function guardarVida(objeto, idElemento) {
             document.getElementById(idElemento).textContent = objeto.nombre + " " + objeto.hp + "hp " + objeto.nivel + " lv";
@@ -258,7 +317,7 @@
             switch (nombreAtaque) {
 
                 case "Thunderbolt":
-                    var daño = Calculardaño(pikachu, pikachu.movimientos[0], articuno);
+                    var daño = Calculardaño(pikachu, articuno, pikachu.movimientos[0]);
 
                     resolucionAtaque(vidaOponente, daño, articuno);
 
@@ -269,7 +328,7 @@
                     break;
 
                 case "Thunderwave":
-                    var daño = Calculardaño(pikachu, pikachu.movimientos[1], articuno);
+                    var daño = Calculardaño(pikachu, articuno, pikachu.movimientos[1]);
 
                     resolucionAtaque(vidaOponente, daño, articuno);
                     setTimeout(() => {
@@ -278,7 +337,7 @@
                     break;
 
                 case "Agility":
-                    var daño = Calculardaño(pikachu, pikachu.movimientos[2], articuno);
+                    var daño = Calculardaño(pikachu, articuno, pikachu.movimientos[2]);
 
                     resolucionAtaque(vidaOponente, daño, articuno);
                     setTimeout(() => {
@@ -288,7 +347,7 @@
                     break;
 
                 case "Tackle":
-                    var daño = Calculardaño(pikachu, pikachu.movimientos[3], articuno);
+                    var daño = Calculardaño(pikachu, articuno, pikachu.movimientos[3]);
 
                     resolucionAtaque(vidaOponente, daño, articuno);
                     setTimeout(() => {
@@ -302,45 +361,27 @@
 
         function ataqueEnemigo() {
             var vidaOponente = pikachu.getHp();
-            var nombreAtaque = Math.floor(Math.random() * 4)
-            alert("articuno ataca !!! con " + articuno.movimientos[nombreAtaque].nombre);
+
+            // Obtener un movimiento aleatorio de los 4 movimientos de Articuno
+            var movimientoAleatorio = articuno.movimientos[Math.floor(Math.random() * 4)];
+
+            //var nombreAtaque = Math.floor(Math.random() * 4);
+            alert("articuno ataca !!! con " + movimientoAleatorio.nombre);
             //alert("Funciona");
-            pokemonActual
+            //pokemonActual
             var objectoPokemon;
             
-            if (pokemonActual == "Picachu") {
+            if (pokemonActual == "Pikachu") {
                 objectoPokemon = pikachu;
             }else{
                 objectoPokemon = ditto;
             }
 
-            switch (nombreAtaque) {
+            // Calcular el daño con el movimiento aleatorio
+            var daño = Calculardaño(articuno, objectoPokemon, movimientoAleatorio);
+            resolucionAtaque(vidaOponente, daño, objectoPokemon);
 
-                case 1:
-                    var daño = Calculardaño(articuno, articuno.movimientos[0], objectoPokemon);
-
-                    resolucionAtaque(vidaOponente, daño, objectoPokemon)
-                    break;
-
-                case 2:
-                    var daño = Calculardaño(articuno, articuno.movimientos[1], objectoPokemon);
-
-                    resolucionAtaque(vidaOponente, daño, objectoPokemon)
-                    break;
-
-                case 3:
-                    var daño = Calculardaño(articuno, articuno.movimientos[2], objectoPokemon);
-
-                    resolucionAtaque(vidaOponente, daño, objectoPokemon)
-                    break;
-
-                case 4:
-                    var daño = Calculardaño(articuno, articuno.movimientos[3], objectoPokemon);
-
-                    resolucionAtaque(vidaOponente, daño, objectoPokemon)
-                    break;
-
-            }
+            
         }
 
         function run() {
@@ -757,7 +798,7 @@
 
             <div id="pokemons">
                 <div class="attackBox" >
-                    <h1 id="pokebola" class="actionText" onclick="seleccionarPersonaje('Picachu')">Picachu</h1>
+                    <h1 id="pokebola" class="actionText" onclick="seleccionarPersonaje('Pikachu')">Pikachu</h1>
                 </div>
                 <div class="attackBox" >
                     <h1 id="pokebola" class="actionText" onclick="seleccionarPersonaje('Ditto')">Ditto</h1>
