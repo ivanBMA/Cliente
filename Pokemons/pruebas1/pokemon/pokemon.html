@@ -7,11 +7,12 @@
     <script src="jQuery/jquery-3.4.1.min.js" type="text/javascript"></script>
 
     <script>
-
+        //No pongo el fondo en rojo de un pokemon muerto porque cuando muere no se le puede seleccionar y ademas cuando se muere hay un
+        //cambio automatico de pokemon.
         //Document.getElementById("HpOpponent").textContent = ditto.hp;
 
         let pokeballsDisponibles = 2;
-        let pokemonActual = "Picachu";
+        let pokemonActual = "Pikachu";
 
         function name() {
             alert("Lanza pokeballs " + articuno.hpMaxima);
@@ -24,7 +25,7 @@
                 // Verifica si hay Pokeballs disponibles
                 if (pokeballsDisponibles > 0) {
                     // Calcula la probabilidad de captura
-                    alert("aqui");
+                    alert("lanzando..");
                     let f = (pokemon.hpActual / pokemon.hpMaxima) * 255 / 3;
 
                     // Genera un número aleatorio entre 0 y 255
@@ -37,6 +38,7 @@
                         alert(`Pokeballs restantes: ${pokeballsDisponibles}`);
                         document.getElementById("pokebola").textContent = "Pokeballs :" + pokeballsDisponibles;
                         //si ganas salta pantalla de inicio con el texto has ganado ->
+                        window.location.href = "finCapturado.html";
                         return true;  // Captura exitosa
                     } else {
                         console.log(`La captura ha fallado. ${pokemon.nombre} ha escapado.`);
@@ -54,17 +56,17 @@
         }
 
         // Prototipo de Pokémon
-        function Pokemon(nombre, nivel, hp, ataque, defensa, ataqueESP, defensaESP, velocidad,hpMaxima, movimientos, tipo1,  tipo2) {
-            this.nombre = nombre;
-            this.nivel = nivel;
-            this.hp = hp;
+        function Pokemon(nombre, nivel, hp, ataque, defensa, ataqueESP, defensaESP, velocidad, hpMaxima, movimientos, tipo1, tipo2) {
+            this.nombre = nombre;//
+            this.nivel = nivel;//
+            this.hp = hp;//
             this.ataque = ataque;
             this.defensa = defensa;
             this.ataqueESP = ataqueESP;
             this.defensaESP = defensaESP;
-            this.velocidad = velocidad;
-            this.movimientos = movimientos || [];
-            this.hpMaxima = hpMaxima ;
+            this.velocidad = velocidad;//
+            this.movimientos = movimientos || [];//->
+            this.hpMaxima = hpMaxima;//
             this.tipo1 = tipo1;
             this.tipo2 = tipo2 || null;
 
@@ -77,6 +79,53 @@
             // Setter para actualizar el nivel del Pokémon
             this.setHp = function (nuevoHp) {
                 this.hp = nuevoHp;
+            };
+
+            this.setVelocidad = function (nuevoVelocidad) {
+                this.velocidad = nuevoVelocidad;
+            };
+
+
+
+            this.setTipo1 = function (nuevoTipo1) {
+                this.tipo1 = nuevoTipo1;
+            };
+
+
+            this.setTipo2 = function (elNuevo) {
+                this.tipo2 = elNuevo;
+            };
+
+            this.setDefensa = function (elNuevo) {
+                this.defensa = elNuevo;
+            };
+
+            this.setAtaque = function (elNuevo) {
+                this.ataque = elNuevo;
+            };
+
+            this.setAtaqueESP = function (elNuevo) {
+                this.ataqueESP = elNuevo;
+            };
+            this.setDefensaESP = function (elNuevo) {
+                this.defensaESP = elNuevo;
+            };
+
+            this.setMovimiento = function (movimientosNuevos) {
+                this.movimiento = [];
+                /*
+                for (let index = 0; index < vectorMovimientosArticuno.length; index++) {
+                    this.movimiento[index] = vectorMovimientosArticuno[index].slice();
+                    this.movimiento[index].setPp(5);
+                }
+                */
+                //this.movimiento = [].concat(vectorMovimientosArticuno);
+                // this.movimiento = [...vectorMovimientosArticuno];
+                var movimientos2 =  movimientosNuevos.slice();
+                this.movimiento = movimientos2.slice();
+
+                
+                
             };
         }
 
@@ -92,6 +141,10 @@
             this.objetivo = objetivo;
             this.tipo = tipo;
             this.categoria = categoria; // Puede ser "Físico", "Especial" o "Estatus"
+
+            this.setPp = function (elNuevo) {
+                this.pp = elNuevo;
+            };
         }
 
         // Instancias de Pikachu, Ditto y Articuno con los atributos proporcionados
@@ -149,7 +202,7 @@
                 new Movimiento("Ice Beam", 95, 100, 10, "Objetivo único", "Hielo", "Especial"),
                 new Movimiento("Agility", 0, 100, 30, "Self", "Normal", "Estatus"),//->aumentara la vel del usuario 100$ de su vel Base(atributo vel), ajustar precision de los movimientos
                 new Movimiento("Swift", 60, 100, 20, "Objetivo único", "Normal", "Especial"),
-                new Movimiento("Steel wing", 70, 90, 25, "Objetivo único", "Acero", "Fisico" )
+                new Movimiento("Steel wing", 70, 90, 25, "Objetivo único", "Acero", "Fisico")
             ],
             "Hielo",
             "Volador"
@@ -168,10 +221,6 @@
 
             // Si Ditto es el Pokémon atacado
             if (pokemonAtacado.nombre == "Ditto") {
-                // Lógica específica para Ditto (ajustar según necesidades)
-                // ...
-
-                // Valor por defecto si no se cumple ninguna condición específica de Ditto
                 return 1;
             }
 
@@ -192,17 +241,24 @@
         function Calculardaño(pokemonAtacante, movimientosAtacante, pokemonAtacado) {
             //nivel,ataque, ataqqESP, defensa, defensaEsp tipo1, tipo2
             //Potencia, categoria,
-            var tipo1 = debilidades1(pokemonAtacado, pokemonAtacante, movimientosAtacante);
-            var tipo2 = debilidades1(pokemonAtacado, pokemonAtacante, movimientosAtacante);
+           // var tipo1 = debilidades1(pokemonAtacado, pokemonAtacante, movimientosAtacante);
+            //var tipo2 = debilidades1(pokemonAtacado, pokemonAtacante, movimientosAtacante);
+
+            if (movimientosAtacante <= 0) {
+                return 0;
+            }
+            
+            var tipo1 = 1;
+            var tipo2 = 1;
             var rnd = (Math.floor(Math.random() * 255) + 217) / 255;
-            var daño = ((2 * pokemonAtacante.nivel) / 5) + 2;
+            //var daño = ((2 * pokemonAtacante.nivel) / 5) + 2;
             var A;
             var D;
-            
+
             if (movimientosAtacante.categoria == "Especial") {
                 A = pokemonAtacante.ataqueESP;
                 D = pokemonAtacado.defensaESP;
-            }else{
+            } else {
                 A = pokemonAtacante.ataque;
                 D = pokemonAtacado.defensa;
 
@@ -214,23 +270,71 @@
             } else {
                 stab = 1;
             }
-            
-            console.log("a " + A + "D" + D + " tipo1" + tipo1 + "tipò2" + tipo2 + "rnd" + rnd + "daño" + daño);
-            daño = (daño * (movimientosAtacante.potencia * A)) /D  * stab * tipo1 * tipo2 * rnd;
 
+            console.log("a " + A + "D" + D + " tipo1" + tipo1 + "tipò2" + tipo2 + "rnd" + rnd + "daño" + daño);
+            //daño = (daño * (movimientosAtacante.potencia * A)) /D  * stab * tipo1 * tipo2 * rnd;
+            var daño = (((2 * pokemonAtacante.nivel) / 5 + 2) * movimientosAtacante.potencia * A / D / 50 + 2) * tipo1 * tipo2;
             daño = Math.floor(daño);
-            
-            return daño;
+
+            if (movimientosAtacante.nombre == "Steel wing") {
+                var probabilidad = Math.floor(Math.random() * 100)
+                if (probabilidad <= 70) {
+                    return daño;
+                } else {
+                    alert("fallo el tiro");
+                    return 0;
+                }
+            }
+
+            if (movimientosAtacante.precision == 100) {
+                return daño;
+            }
+            else if (movimientosAtacante.precision == 95) {
+                var probabilidad = Math.floor(Math.random() * 100)
+                if (probabilidad <= 95) {
+                    return daño;
+                } else {
+                    return 0;
+                }
+            }
+
         }
 
         function guardarVida(objeto, idElemento) {
             document.getElementById(idElemento).textContent = objeto.nombre + " " + objeto.hp + "hp " + objeto.nivel + " lv";
+            document.getElementById("pikachu").textContent = "Pikachu: " + pikachu.getHp();
+            document.getElementById("ditto").textContent = "Ditto: " + ditto.getHp();
         }
 
         function resolucionAtaque(vidaOponente, daño, objeto) {
             //alert(vidaOponente);
             if (vidaOponente - daño <= 0) {
                 alert(objeto.nombre + " esta muerto!!!");
+                var vidaRestante2 = 0;
+                objeto.setHp(vidaRestante2);
+
+                if (pikachu.hp == 0 && ditto.hp == 0) {
+                    window.location.href = "looser.html";
+                }
+                else if (objeto.nombre == "Articuno") {
+                    guardarVida(objeto, "HpOpponent");
+                    window.location.href = "winnerKill.html";
+                }
+                else if (objeto.nombre == "Ditto") {
+                    guardarVida(objeto, "mypokemonHp");
+                    seleccionarPersonaje("Pikachu");
+
+                    //ataqueEnemigo();
+
+                }
+                else {
+                    guardarVida(objeto, "mypokemonHp");
+                    seleccionarPersonaje("Ditto");
+                    //ataqueEnemigo();
+
+                }
+
+
             }
             else {
 
@@ -254,33 +358,69 @@
         function ataqueMio(nombreAtaque) {
             var vidaOponente = articuno.getHp();
 
+
             //alert("Funciona");
             switch (nombreAtaque) {
-
                 case "Thunderbolt":
+                    if (pikachu.movimientos[0].pp == 0) {
+                        break;
+                    }
+
+                    pikachu.movimientos[0].setPp(pikachu.movimientos[0].pp - 1);
                     var daño = Calculardaño(pikachu, pikachu.movimientos[0], articuno);
 
-                    resolucionAtaque(vidaOponente, daño, articuno);
-
-                    setTimeout(() => {
+                    if (articuno.velocidad > pikachu.velocidad) {
                         ataqueEnemigo();
-                    }, 2000);
+                        setTimeout(() => {
+                            resolucionAtaque(vidaOponente, daño, articuno);
+                        }, 2000);
+                    } else {
+                        resolucionAtaque(vidaOponente, daño, articuno);
+                        setTimeout(() => {
+                            ataqueEnemigo();
+                        }, 2000);
+                    }
 
                     break;
 
                 case "Thunderwave":
+                    if (pikachu.movimientos[1].pp == 0) {
+                            break;
+                    }
+                    pikachu.movimientos[0].setPp(pikachu.movimientos[1].pp - 1);
                     var daño = Calculardaño(pikachu, pikachu.movimientos[1], articuno);
 
-                    resolucionAtaque(vidaOponente, daño, articuno);
-                    setTimeout(() => {
+                    if (articuno.velocidad > pikachu.velocidad) {
                         ataqueEnemigo();
-                    }, 2000);
+                        setTimeout(() => {
+                            resolucionAtaque(vidaOponente, daño, articuno);
+                        }, 2000);
+                    } else {
+                        resolucionAtaque(vidaOponente, daño, articuno);
+                        setTimeout(() => {
+                            ataqueEnemigo();
+                        }, 2000);
+                    }
                     break;
 
                 case "Agility":
-                    var daño = Calculardaño(pikachu, pikachu.movimientos[2], articuno);
-
-                    resolucionAtaque(vidaOponente, daño, articuno);
+                    
+                    if (pokemonActual == "Pikachu") {
+                        objeto = pikachu;
+                        if (objeto.movimientos[2].pp == 0) {
+                            break;
+                        }
+                        pikachu.movimientos[2].setPp(pikachu.movimientos[2].pp - 1);
+                    } else {
+                        objeto = ditto;
+                        //if (objeto.movimientos[1].pp == 0) {
+                        //    break;
+                        //}
+                        //ditto.movimientos[1].setPp(ditto.movimientos[1].pp - 1);
+                    }
+                    
+                    objeto.setVelocidad(objeto.velocidad * 2);
+                    
                     setTimeout(() => {
                         ataqueEnemigo();
                     }, 2000);
@@ -288,55 +428,155 @@
                     break;
 
                 case "Tackle":
+                    if (pikachu.movimientos[3].pp == 0) {
+                        break;
+                    }
+                    pikachu.movimientos[3].setPp(pikachu.movimientos[3].pp - 1);
                     var daño = Calculardaño(pikachu, pikachu.movimientos[3], articuno);
 
-                    resolucionAtaque(vidaOponente, daño, articuno);
+                    if (articuno.velocidad > pikachu.velocidad) {
+                        ataqueEnemigo();
+                        setTimeout(() => {
+                            resolucionAtaque(vidaOponente, daño, articuno);
+                        }, 2000);
+                    } else {
+                        resolucionAtaque(vidaOponente, daño, articuno);
+                        setTimeout(() => {
+                            ataqueEnemigo();
+                        }, 2000);
+                    }
+
+                    break;
+
+                case "Transformación":
+                    ditto.setAtaque(articuno.ataque);
+                    ditto.setDefensa(articuno.defensa);
+                    ditto.setAtaqueESP(articuno.ataqueESP);
+                    ditto.setDefensaESP(articuno.defensaESP);
+                    ditto.setVelocidad(articuno.velocidad);
+                    ditto.setTipo1(articuno.tipo1);
+                    ditto.setTipo2(articuno.tipo2);
+                    ditto.setMovimiento(articuno.movimientos.slice());
+                    //cambiamos los nombres de los ataques en la intefaz y cambiar la imagen de ditto a la de articuno
+                    document.getElementById("mypokemon").setAttribute("src", "img/articuno.png");
+                    document.getElementById("attacks3").innerHTML = document.getElementById("attacks2").innerHTML;
+
+                    
+
+                    
+
                     setTimeout(() => {
                         ataqueEnemigo();
                     }, 2000);
 
                     break;
 
+                case "Ice Beam":
+                    //if (ditto.movimientos[0].pp == 0) {
+                    //    break;
+                    //}
+                    //ditto.movimientos[0].setPp(ditto.movimientos[0].pp - 1);
+                    var daño = Calculardaño(ditto, articuno.movimientos[0], articuno);
+
+                    if (articuno.velocidad > ditto.velocidad) {
+                        ataqueEnemigo();
+                        setTimeout(() => {
+                            resolucionAtaque(vidaOponente, daño, articuno);
+                        }, 2000);
+                    } else {
+                        resolucionAtaque(vidaOponente, daño, articuno);
+                        setTimeout(() => {
+                            ataqueEnemigo();
+                        }, 2000);
+                    }
+
+                    break;
+
+                case "Swift":
+                    //if (ditto.movimientos[2].pp == 0) {
+                    //    break;
+                    //}
+                    //ditto.movimientos[2].setPp(ditto.movimientos[2].pp - 1);
+                    var daño = Calculardaño(ditto, articuno.movimientos[2], articuno);
+
+                    if (articuno.velocidad > ditto.velocidad) {
+                        ataqueEnemigo();
+                        setTimeout(() => {
+                            resolucionAtaque(vidaOponente, daño, articuno);
+                        }, 2000);
+                    } else {
+                        resolucionAtaque(vidaOponente, daño, articuno);
+                        setTimeout(() => {
+                            ataqueEnemigo();
+                        }, 2000);
+                    }
+
+                    break;
+                case "Steel wing":
+                    //if (ditto.movimientos[3].pp == 0) {
+                    //    break;
+                    //}
+
+                    //ditto.movimientos[3].setPp(ditto.movimientos[3].pp - 1);
+                    var daño = Calculardaño(ditto, articuno.movimientos[3], articuno);
+
+                    if (articuno.velocidad > ditto.velocidad) {
+                        ataqueEnemigo();
+                        setTimeout(() => {
+                            resolucionAtaque(vidaOponente, daño, articuno);
+                        }, 2000);
+                    } else {
+                        resolucionAtaque(vidaOponente, daño, articuno);
+                        setTimeout(() => {
+                            ataqueEnemigo();
+                        }, 2000);
+                    }
+
+                    break;
+
             }
+
         }
 
         function ataqueEnemigo() {
-            var vidaOponente = pikachu.getHp();
+
             var nombreAtaque = Math.floor(Math.random() * 4)
-            alert("articuno ataca !!! con " + articuno.movimientos[nombreAtaque].nombre);
-            //alert("Funciona");
             pokemonActual
             var objectoPokemon;
-            
-            if (pokemonActual == "Picachu") {
+
+            if (pokemonActual == "Pikachu") {
                 objectoPokemon = pikachu;
-            }else{
+                var vidaOponente = pikachu.getHp();
+            } else {
                 objectoPokemon = ditto;
+                var vidaOponente = ditto.getHp();
             }
 
             switch (nombreAtaque) {
 
-                case 1:
+                case 0:
                     var daño = Calculardaño(articuno, articuno.movimientos[0], objectoPokemon);
-
+                    alert(articuno.movimientos[0].nombre);
                     resolucionAtaque(vidaOponente, daño, objectoPokemon)
                     break;
 
-                case 2:
-                    var daño = Calculardaño(articuno, articuno.movimientos[1], objectoPokemon);
+                case 1:
+                    alert(articuno.movimientos[1].nombre);
 
+                    articuno.setVelocidad(articuno.velocidad * 2);
+
+                    alert("velocidad" + articuno.velocidad);
+                    break;
+
+                case 2:
+                    var daño = Calculardaño(articuno, articuno.movimientos[2], objectoPokemon);
+                    alert(articuno.movimientos[2].nombre);
                     resolucionAtaque(vidaOponente, daño, objectoPokemon)
                     break;
 
                 case 3:
-                    var daño = Calculardaño(articuno, articuno.movimientos[2], objectoPokemon);
-
-                    resolucionAtaque(vidaOponente, daño, objectoPokemon)
-                    break;
-
-                case 4:
                     var daño = Calculardaño(articuno, articuno.movimientos[3], objectoPokemon);
-
+                    alert(articuno.movimientos[3].nombre);
                     resolucionAtaque(vidaOponente, daño, objectoPokemon)
                     break;
 
@@ -347,7 +587,7 @@
             var probabilidad = Math.floor(Math.random() * (100 - 0) + 0);
             alert(probabilidad);
             if (probabilidad <= 20) {
-                alert("“You run…");
+                window.location.href = "finHuir.html";
             } else {
                 alert("Pierde el turno y Articuno atacará.");
                 ataqueEnemigo();
@@ -359,13 +599,18 @@
             alert(nombrePokemon);
             pokemonActual = nombrePokemon;
 
-            if (nombrePokemon == "Ditto") {
+            if (nombrePokemon == "Ditto" && ditto.getHp() > 0) {
                 document.getElementById("mypokemon").setAttribute("src", "img/ditto.png");
                 document.getElementById("mypokemonHp").textContent = ditto.nombre + " (HP-" + ditto.getHp() + ") (Lv-" + ditto.nivel + ")";
-            }else{
+            }
+            else if (nombrePokemon == "Pikachu" && pikachu.getHp() > 0) {
                 document.getElementById("mypokemon").setAttribute("src", "img/pikachu.png");
                 document.getElementById("mypokemonHp").textContent = pikachu.nombre + " (HP-" + pikachu.getHp() + ") (Lv-" + pikachu.nivel + ")";
+                document.getElementById("attacks3").innerHTML = document.getElementById("attacks").innerHTML;
+            } else {
+                alert(nombrePokemon + " esta muerto y no puedes seleccionarlo");
             }
+            ataqueEnemigo();
         }
 
         var timer;
@@ -417,6 +662,8 @@
             document.getElementById("mypokemonHp").textContent = pikachu.nombre + " (HP-" + pikachu.getHp() + ") (Lv-" + pikachu.nivel + ")";
             document.getElementById("pokebola").textContent = "Pokeballs :" + pokeballsDisponibles;
 
+            document.getElementById("pikachu").textContent = "Pikachu: " + pikachu.getHp();
+            document.getElementById("ditto").textContent = "Ditto: " + ditto.getHp();
 
 
             // Oculta elementos al principio
@@ -444,12 +691,20 @@
             })
 
             //Este codgo hace que al clickar en figth, hace que se oculte mainBox(whatshould pika do), y se muestren los atacks
-            $("#selector1").on("click", function () {
+            $("#selector1").on("click", function cambioAtaques() {
                 console.log("click");
                 $("#mainBox").hide();
                 $("#mochila").hide();
                 $("#pokemons").hide();
-                $("#attacks").css("display", "flex");
+                $("#attacks").hide();
+                $("#attacks2").hide();
+                $("#attacks3").hide();
+
+                if (pokemonActual == "Pikachu") {
+                    $("#attacks").css("display", "flex");
+                } else {
+                    $("#attacks3").css("display", "flex");
+                }
                 $(".triangle").hide();
                 $("#triangle1").show();
             })
@@ -459,6 +714,8 @@
                 console.log("click");
                 $("#mainBox").hide();
                 $("#attacks").hide();
+                $("#attacks2").hide();
+                $("#attacks3").hide();
                 $("#pokemons").hide();
                 $("#mochila").css("display", "flex");
                 $(".triangle").hide();
@@ -470,6 +727,8 @@
                 console.log("click");
                 $("#mainBox").hide();
                 $("#attacks").hide();
+                $("#attacks2").hide();
+                $("#attacks3").hide();
                 $("#mochila").hide();
                 $("#pokemons").css("display", "flex");
                 $(".triangle").hide();
@@ -575,6 +834,22 @@
         }
 
         #attacks {
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+            top: 20px;
+            display: none;
+        }
+
+        #attacks2 {
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+            top: 20px;
+            display: none;
+        }
+
+        #attacks3 {
             display: flex;
             flex-wrap: wrap;
             position: relative;
@@ -747,20 +1022,48 @@
                 <div id="triangleDiv"><img src="img/Right_triangle.png" class="triangle" id="triangle4" /></div>
             </div>
 
+            <div id="attacks2">
+                <div class="attackBox" onclick="ataqueMio('Ice Beam')">
+                    <h1 class="actionText">Ice Beam</h1>
+                </div>
+                <div class="attackBox" onclick="ataqueMio('Agility')">
+                    <h1 class="actionText">Agility</h1>
+                </div>
+                <div class="attackBox" onclick="ataqueMio('Swift')">
+                    <h1 class="actionText">Swift</h1>
+                </div>
+                <div class="attackBox" onclick="ataqueMio('Steel wing')">
+                    <h1 class="actionText">Steel wing</h1>
+                </div>
+
+                <div id="triangleDiv"><img src="img/Right_triangle.png" class="triangle" id="triangle1" /></div>
+                <div id="triangleDiv"><img src="img/Right_triangle.png" class="triangle" id="triangle2" /></div>
+                <div id="triangleDiv"><img src="img/Right_triangle.png" class="triangle" id="triangle3" /></div>
+                <div id="triangleDiv"><img src="img/Right_triangle.png" class="triangle" id="triangle4" /></div>
+            </div>
+
+            <div id="attacks3">
+                <div class="attackBox" onclick="ataqueMio('Transformación')">
+                    <h1 class="actionText">Transformación</h1>
+                </div>
+
+                <div id="triangleDiv"><img src="img/Right_triangle.png" class="triangle" id="triangle1" /></div>
+            </div>
+
             <div id="mochila">
                 <div class="attackBox" onclick="miPokeball.intentarCaptura(articuno)">
-                    <h1 id="pokebola" class="actionText" >Pokeball</h1>
+                    <h1 id="pokebola" class="actionText">Pokeball</h1>
                 </div>
 
                 <div id="triangleDiv"><img src="img/Right_triangle.png" class="triangle" id="triangle1" /></div>
             </div>
 
             <div id="pokemons">
-                <div class="attackBox" >
-                    <h1 id="pokebola" class="actionText" onclick="seleccionarPersonaje('Picachu')">Picachu</h1>
+                <div class="attackBox">
+                    <h1 id="pikachu" class="actionText" onclick="seleccionarPersonaje('Pikachu')">Pikachu</h1>
                 </div>
-                <div class="attackBox" >
-                    <h1 id="pokebola" class="actionText" onclick="seleccionarPersonaje('Ditto')">Ditto</h1>
+                <div class="attackBox">
+                    <h1 id="ditto" class="actionText" onclick="seleccionarPersonaje('Ditto')">Ditto</h1>
                 </div>
 
                 <div id="triangleDiv"><img src="img/Right_triangle.png" class="triangle" id="triangle1" /></div>
@@ -782,7 +1085,7 @@
             <div class="actionBox">
                 <h1 class="actionText">RUN</h1>
             </div>
-            
+
             <div class="selector" id="selector1"></div>
             <div class="selector" id="selector2"></div>
             <div class="selector" id="selector3"></div>
